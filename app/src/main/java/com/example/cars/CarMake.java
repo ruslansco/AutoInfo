@@ -1,7 +1,10 @@
 package com.example.cars;
+// Ahmed Alotaibi
 
 import java.util.List;
 
+// A class for the CarMake including constructor
+// and setters with getters for the object.
 public class CarMake {
 
     private int id;

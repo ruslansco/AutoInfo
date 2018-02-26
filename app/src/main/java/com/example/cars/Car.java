@@ -1,6 +1,7 @@
 package com.example.cars;
+// Ahmed Alotaibi
 
-// a class for the car with its setters and getters.
+// A class for the car with its setters and getters.
 public class Car {
     private String name;
     private int year;

@@ -1,5 +1,11 @@
 package com.example.cars;
 
+// Ahmed Alotaibi
+// An adapter that retrieves data from
+// the data set and for generating View objects based on that data.
+// The generated View objects are then used to populate
+// any adapter view that is bound to the adapter.
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -16,16 +22,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-// abstract class that implements the interface
-
+// A abstract class that implements the interface
 public class CarMakesListAdapter extends BaseAdapter {
     private Context context;
     private List<CarMake> carMakes;
+
+    // LayoutInflater is used to instantiate layout
+    // XML file into its corresponding View objects.
     LayoutInflater inflter;
 
     public CarMakesListAdapter(Context context, List<CarMake> carMakes) {
         this.context = context;
         this.carMakes = carMakes;
+        // Get the inflater in the constructor.
         inflter = (LayoutInflater.from(context));
     }
     @Override
@@ -55,11 +64,16 @@ public class CarMakesListAdapter extends BaseAdapter {
     // like a TextView or a complex set of widgets in a layout)
     // that displays the data for the specified (by position) item/row in the Adapter.
     public View getView(final int i, View view, ViewGroup viewGroup) {
+        // Inflate the xml which gives the view
         view = inflter.inflate(R.layout.car_make_layout, null);
+        // Get the widget with the id name which is defined in the xml
+        // of the row
         TextView carMakeName = view.findViewById(R.id.carMakeName);
-
+        // Populate the row's xml with info from the item.
         carMakeName.setText(carMakes.get(i).getName());
         ImageView iv = view.findViewById(R.id.carMakeImg);
+
+        // Adding the logs into the CarMakes
         iv.setImageBitmap(getBitmapFromAssets(context,carMakes.get(i).getId() + ".jpg"));
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +83,11 @@ public class CarMakesListAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
+        // Return the generated view
         return view;
     }
+    // Connect and display the logs from asset
+    // Which mannage by the asset Manager
     public static Bitmap getBitmapFromAssets(Context context, String fileName) {
         AssetManager am = context.getAssets();
         InputStream is = null;

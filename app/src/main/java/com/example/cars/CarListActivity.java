@@ -1,4 +1,5 @@
 package com.example.cars;
+// Ahmed Alotaibi
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +8,7 @@ import android.widget.ListView;
 
 
 public class CarListActivity extends AppCompatActivity {
-
+    // Declare the layout xml
     private ListView carList;
 
     @Override
