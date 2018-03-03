@@ -73,6 +73,7 @@ public class CarListAdapter extends BaseAdapter {
         TextView carName = view.findViewById(R.id.carName);
         ImageView carMakeImg = view.findViewById(R.id.carMakeImg);
 
+
         // Populate the row's xml with info from the item.
         carYear.setText(cars.get(i).getYear() + "");
         carName.setText(cars.get(i).getName());
