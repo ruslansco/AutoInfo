@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -26,9 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLogin;
     private ProgressBar mProgressBar;
     private ImageView mLogo;
-
-
-
-
-
 }
+
+

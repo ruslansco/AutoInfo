@@ -8,7 +8,6 @@ import android.widget.ListView;
 
 
 public class CarListActivity extends AppCompatActivity {
-    private static final String TAG = "CarListActivity";
     // Declare the layout xml
     private ListView carList;
 

@@ -19,37 +19,29 @@ public class CarData {
         this.model = model;
     }
 
-    // setters and getters for the object.
+    // setters and getters for the objects.
 
     public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
+    public void setYear(int year) { this.year = year; }
 
     public String getMake() {
         return make;
     }
 
-    public void setMake(String make) {
-        this.make = make;
-    }
+    public void setMake(String make) { this.make = make; }
 
     public int getMakeId() {
         return makeId;
     }
 
-    public void setMakeId(int makeId) {
-        this.makeId = makeId;
-    }
+    public void setMakeId(int makeId) { this.makeId = makeId; }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+    public void setModel(String model) { this.model = model; }
 }

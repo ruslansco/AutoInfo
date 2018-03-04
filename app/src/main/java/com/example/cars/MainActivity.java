@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         // to complete the creation of activity like
         // the view hierarchy
         super.onCreate(savedInstanceState);
-        setTitle("CarData makes");
+        setTitle("List of car makers");
         setContentView(R.layout.activity_main);
         carMakesList = findViewById(R.id.carMakesList);
         carMakesList.setAdapter(new CarMakesListAdapter(this, carMakes));
