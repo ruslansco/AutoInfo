@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "579999563952-gdapd758agbfv8g4st6q68lul3c7960a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.cars",
-            "certificate_hash": "341073a5ce7fb9c9701109fda8526f0f53df65e7"
-          }
-        },
-        {
           "client_id": "579999563952-agl3gtstuu6eavic6029k8833l78qtpn.apps.googleusercontent.com",
           "client_type": 3
         }

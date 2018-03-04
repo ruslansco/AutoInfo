@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="5dp"
-    android:paddingTop="20dp">
+    android:paddingTop="20dp"
+    >
 
     <ImageView
         android:id="@+id/carMakeImg"

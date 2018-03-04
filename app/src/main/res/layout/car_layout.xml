@@ -23,13 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_weight=".1"/>
 
-    <Button
-        android:id="@+id/BuId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Button" />
-
     <TextView
         android:id="@+id/carName"
         android:layout_weight=".5"
