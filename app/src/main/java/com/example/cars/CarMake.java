@@ -1,8 +1,6 @@
 package com.example.cars;
 // Ahmed Alotaibi
 
-import java.util.List;
-
 // A class for the CarMake including constructor
 // and setters with getters for the object.
 public class CarMake {
@@ -14,7 +12,6 @@ public class CarMake {
         this.id = id;
         this.name = name;
     }
-
     public String getName() {
         return name;
     }
@@ -23,9 +20,7 @@ public class CarMake {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;

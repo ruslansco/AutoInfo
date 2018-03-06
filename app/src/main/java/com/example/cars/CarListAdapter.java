@@ -24,7 +24,7 @@ public class CarListAdapter extends BaseAdapter {
 
     // LayoutInflater is used to instantiate layout
     // XML file into its corresponding View objects.
-    LayoutInflater inflter;
+    private LayoutInflater inflter;
 
     // Constructor the the objects.
     public CarListAdapter(Context context, List<Car> cars, int makeId) {
@@ -75,10 +75,10 @@ public class CarListAdapter extends BaseAdapter {
 
 
         // Populate the row's xml with info from the item.
-        carYear.setText(cars.get(i).getYear() + "");
+        carYear.setText(cars.get(i).getYear() + "     "); // space to set nice formatted for users
         carName.setText(cars.get(i).getName());
 
-        //Adding the logs into the CarMakes
+        //Adding the logos into the CarMakes
         carMakeImg.setImageBitmap(CarMakesListAdapter.getBitmapFromAssets(context, makeId + ".jpg"));
 
         // Return the generated view

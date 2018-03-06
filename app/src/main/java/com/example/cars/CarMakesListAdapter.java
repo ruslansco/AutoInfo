@@ -21,6 +21,8 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 // A abstract class that implements the interface
 public class CarMakesListAdapter extends BaseAdapter {
@@ -29,7 +31,7 @@ public class CarMakesListAdapter extends BaseAdapter {
 
     // LayoutInflater is used to instantiate layout
     // XML file into its corresponding View objects.
-    LayoutInflater inflter;
+    private LayoutInflater inflter;
 
     public CarMakesListAdapter(Context context, List<CarMake> carMakes) {
         this.context = context;
@@ -70,10 +72,10 @@ public class CarMakesListAdapter extends BaseAdapter {
         // of the row
         TextView carMakeName = view.findViewById(R.id.carMakeName);
         // Populate the row's xml with info from the item.
-        carMakeName.setText(carMakes.get(i).getName());
+        carMakeName.setText(carMakes.get(i).getName() + "      "); // Set nice formatted for users
         ImageView iv = view.findViewById(R.id.carMakeImg);
 
-        // Adding the logs into the CarMakes
+        // Adding the logos into the CarMakes
         iv.setImageBitmap(getBitmapFromAssets(context,carMakes.get(i).getId() + ".jpg"));
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +88,7 @@ public class CarMakesListAdapter extends BaseAdapter {
         // Return the generated view
         return view;
     }
-    // Connect and display the logs from asset
+    // Connect and display the logos from asset
     // Which mannage by the asset Manager
     public static Bitmap getBitmapFromAssets(Context context, String fileName) {
         AssetManager am = context.getAssets();
