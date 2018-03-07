@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 //Change Intent
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -145,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
+                    Toast.makeText(LoginActivity.this, "User is not null", Toast.LENGTH_SHORT).show();
 
                     //check if email is verified
                     if(user.isEmailVerified()){
@@ -168,6 +169,19 @@ public class LoginActivity extends AppCompatActivity {
         };
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
+        }
+    }
 
 
 }

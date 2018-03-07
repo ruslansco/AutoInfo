@@ -3,6 +3,9 @@
     <string name="title_activity_car_list">CarListActivity</string>
     <string name="title_activity_login">Sign in</string>
 
+    <!-- Database nodes -->
+    <string name="node_users">users</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

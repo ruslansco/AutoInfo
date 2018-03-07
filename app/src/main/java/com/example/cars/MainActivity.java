@@ -2,10 +2,12 @@ package com.example.cars;
 
 // Ahmed Alotaibi
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // To handle the error while reading data.
             public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this, "Database is not responding", Toast.LENGTH_SHORT).show();
             }
         });
     }
