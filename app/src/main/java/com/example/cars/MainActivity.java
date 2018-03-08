@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_navigation:
-                        Intent intent0 = new Intent(MainActivity.this, MainActivity.class);
+                        Intent intent0 = new Intent(MainActivity.this, MapsActivity.class);
                         startActivity(intent0);
                         break;
 
