@@ -3,10 +3,10 @@
     <item android:id="@+id/action_search"
         android:title="Car"
         android:icon="@drawable/ic_directions_car" />
-    <item android:id="@+id/action_settings"
+    <item android:id="@+id/action_navigation"
         android:title="Map"
         android:icon="@drawable/ic_location" />
-    <item android:id="@+id/action_navigation"
+    <item android:id="@+id/action_account"
         android:title="Account"
         android:icon="@drawable/ic_person" />
 </menu>

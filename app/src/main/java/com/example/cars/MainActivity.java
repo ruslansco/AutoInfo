@@ -2,9 +2,15 @@ package com.example.cars;
 
 // Ahmed Alotaibi
 
+import android.accounts.Account;
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,6 +48,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         carMakesList = findViewById(R.id.carMakesList);
         carMakesList.setAdapter(new CarMakesListAdapter(this, carMakes));
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_search:
+
+                        break;
+
+                    case R.id.action_navigation:
+                        Intent intent0 = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent0);
+                        break;
+
+                    case R.id.action_account:
+                        Intent intent1 = new Intent(MainActivity.this, AccountActivity.class);
+                        startActivity(intent1);
+                        break;
+
+                }
+
+                return false;
+            }
+        });
+
     }
     @Override
     protected void onStart() {
