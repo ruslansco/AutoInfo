@@ -1,0 +1,6 @@
+<root>
+    <item
+        name='com.google.android.gms.maps.model.MarkerOptions com.google.android.gms.maps.model.MarkerOptions title(java.lang.String)'>
+        <annotation name='android.support.annotation.Nullable' />
+    </item>
+</root>

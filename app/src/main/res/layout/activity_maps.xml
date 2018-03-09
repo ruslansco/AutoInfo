@@ -8,6 +8,7 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cars.MapsActivity" >
+    tools:context="com.example.cars.MapsActivity"
+    map:mapType="normal">
 
 </fragment>
