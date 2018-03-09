@@ -15,9 +15,11 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <!--String for Facebook app ID-->
+    <string name="facebook_app_id">336799580175537</string>
+    <string name="fb_login_protocol_scheme">fb336799580175537</string>
     <!-- Google Map API_KEY -->
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">AIzaSyAMjbx7XH6y1phljqoH8b2eESKEC3N4OD4</string>
+
 </resources>

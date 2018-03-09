@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     //Firebase
@@ -49,14 +50,16 @@ public class LoginActivity extends AppCompatActivity {
         init();
 
 
+
     }
-    private void init(){
+
+    private void init() {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //check if the fields are filled out
-                if(!isEmpty(mEmail.getText().toString())
-                        && !isEmpty(mPassword.getText().toString())){
+                if (!isEmpty(mEmail.getText().toString())
+                        && !isEmpty(mPassword.getText().toString())) {
 
 
                     showProgressBar();
@@ -77,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                             hideProgressBar();
                         }
                     });
-                }else{
+                } else {
                     Toast.makeText(LoginActivity.this, "You didn't fill in all the fields.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -97,48 +100,49 @@ public class LoginActivity extends AppCompatActivity {
 
         hideSoftKeyboard();
     }
+
     /**
      * Return true if the @param is null
+     *
      * @param string
      * @return
      */
-    private boolean isEmpty(String string){
+    private boolean isEmpty(String string) {
         return string.equals("");
     }
 
 
-    private void showProgressBar(){
+    private void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
 
     }
 
-    private void hideProgressBar(){
-        if(mProgressBar.getVisibility() == View.VISIBLE){
+    private void hideProgressBar() {
+        if (mProgressBar.getVisibility() == View.VISIBLE) {
             mProgressBar.setVisibility(View.INVISIBLE);
         }
     }
 
 
-    private void initImageLoader(){
+    private void initImageLoader() {
         UniversalImageLoader imageLoader = new UniversalImageLoader(LoginActivity.this);
         ImageLoader.getInstance().init(imageLoader.getConfig());
     }
 
-    private void initProgressBar(){
+    private void initProgressBar() {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
-    private void hideSoftKeyboard(){
+    private void hideSoftKeyboard() {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
-
 
 
     /*
         ----------------------------- Firebase setup ---------------------------------
      */
-    private void setupFirebaseAuth(){
+    private void setupFirebaseAuth() {
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -148,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "User is not null", Toast.LENGTH_SHORT).show();
 
                     //check if email is verified
-                    if(user.isEmailVerified()){
+                    if (user.isEmailVerified()) {
                         Toast.makeText(LoginActivity.this, "Authenticated with: " + user.getEmail(), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -156,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
-                    }else{
+                    } else {
                         Toast.makeText(LoginActivity.this, "Email is not Verified\nCheck your Inbox", Toast.LENGTH_SHORT).show();
                         FirebaseAuth.getInstance().signOut();
                     }
@@ -182,6 +186,12 @@ public class LoginActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
     }
+
+
+
+
+
+
 
 
 }
