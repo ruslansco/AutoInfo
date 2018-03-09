@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class MainActivity extends AppCompatActivity {
     // Manipulate the the list view for user
     // which defines in xml
@@ -126,4 +127,5 @@ public class MainActivity extends AppCompatActivity {
             cars.put(makeId, carList);
         }
     }
+
 }

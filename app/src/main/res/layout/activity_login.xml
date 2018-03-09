@@ -9,51 +9,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="55dp"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        >
+        android:paddingTop="55dp">
+
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/logo"/>
+            android:layout_gravity="center_horizontal" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="Email"
             android:id="@+id/input_email"
-            android:layout_marginTop="15dp"/>
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"
+            android:layout_marginTop="15dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
             android:id="@+id/input_password"
-            android:layout_marginTop="15dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Password"
+            android:inputType="textPassword" />
 
         <Button
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
-            android:text="Login"
-            android:id="@+id/btn_login"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/white_onclick_grey"
             android:padding="12dp"
-            android:background="@drawable/white_onclick_grey"/>
+            android:text="Login" />
 
         <TextView
+            android:id="@+id/link_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="Register"
             android:gravity="center"
-            android:textSize="16dp"
-            android:id="@+id/link_register"
-            android:textColor="@color/blue1"/>
+            android:text="Sign-up"
+            android:textColor="@color/blue1"
+            android:textSize="17dp" />
+
+            <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
 
     </LinearLayout>
 
