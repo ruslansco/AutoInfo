@@ -1,4 +1,4 @@
-package com.example.cars;
+package com.example.cars.account;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,13 +6,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.cars.LoginActivity;
+import com.example.cars.MainActivity;
+import com.example.cars.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
