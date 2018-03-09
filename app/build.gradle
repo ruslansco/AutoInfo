@@ -35,7 +35,10 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     //Design Support Library dependency
     compile 'com.android.support:design:26.+'
-
+    // Google Map
+    compile ("com.google.android.gms:play-services-maps:11.8.0") {
+        force = true;
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
