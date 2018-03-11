@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 //import android.support.v4.content.ContextCompat;
@@ -40,18 +41,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         // Marker
         // Later on, this marker should be used for car makers locations
-        LatLng Point = new LatLng(44.715071, -73.446099);
-        mMap.addMarker(new
-                MarkerOptions().position(Point).title(""));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(Point));
+        mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(4.4715071E01, -73.4460990))
+                .title("Plattsburgh NY")
+                .snippet("Population: 19,780"));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.map_options, menu);
+        inflater.inflate(R.menu.map_options,
+                menu);
         return true;
     }
     @Override
+    // Allow user to choice different types of Maps
     public boolean onOptionsItemSelected(MenuItem item) {
         // Change the map type based on the user's selection.
         switch (item.getItemId()) {

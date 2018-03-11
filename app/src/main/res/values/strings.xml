@@ -18,8 +18,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions." </string>
 
+    <!--String for facebook app D -->
+    <string name="facebook_app_id">336799580175537</string>
+    <string name="fb_login_protocol_scheme">fb336799580175537</string>
+
     <!-- Google Map API_KEY -->
-    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">AIzaSyAMjbx7XH6y1phljqoH8b2eESKEC3N4OD4</string>
+    <string name="google_maps_key" translatable="false"
+        templateMergeStrategy="preserve">AIzaSyAMjbx7XH6y1phljqoH8b2eESKEC3N4OD4</string>
     <string name="normal_map">Normal Map</string>
     <string name="hybrid_map">Hybrid Map</string>
     <string name="satellite_map">Satellite Map</string>

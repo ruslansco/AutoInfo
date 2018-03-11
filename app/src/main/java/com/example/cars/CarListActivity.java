@@ -19,7 +19,10 @@ public class CarListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_car_list);
         carList = findViewById(R.id.carList);
         Intent intent = getIntent();
-        int makeId = intent.getIntExtra("makeId", 1);
-        carList.setAdapter(new CarListAdapter(this, MainActivity.getCarsByMakeId(makeId), makeId));
+        int makeId = intent.getIntExtra(
+                "makeId",
+                1);
+        carList.setAdapter(new CarListAdapter(
+                this, MainActivity.getCarsByMakeId(makeId), makeId));
     }
 }
