@@ -6,6 +6,7 @@ package com.example.cars;
 // The generated View objects are then used to populate
 // any adapter view that is bound to the adapter.
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -21,8 +22,6 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 // A abstract class that implements the interface
 public class CarMakesListAdapter extends BaseAdapter {
@@ -33,7 +32,8 @@ public class CarMakesListAdapter extends BaseAdapter {
     // XML file into its corresponding View objects.
     private LayoutInflater inflter;
 
-    public CarMakesListAdapter(Context context, List<CarMake> carMakes) {
+    public CarMakesListAdapter(Context context,
+                               List<CarMake> carMakes) {
         this.context = context;
         this.carMakes = carMakes;
         // Get the inflater in the constructor.
@@ -61,22 +61,32 @@ public class CarMakesListAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return i;
     }
+    @SuppressLint("ViewHolder")
+
     @Override
     // This method creates the View (which may be a single View component
     // like a TextView or a complex set of widgets in a layout)
     // that displays the data for the specified (by position) item/row in the Adapter.
-    public View getView(final int i, View view, ViewGroup viewGroup) {
+    public View getView(
+            final int i, View view, ViewGroup viewGroup) {
         // Inflate the xml which gives the view
-        view = inflter.inflate(R.layout.car_make_layout, null);
+        view = inflter.
+                inflate(R.layout.
+                        car_make_layout,
+                        null);
         // Get the widget with the id name which is defined in the xml
         // of the row
-        TextView carMakeName = view.findViewById(R.id.carMakeName);
+        TextView carMakeName = view.
+                findViewById(R.id.carMakeName);
         // Populate the row's xml with info from the item.
-        carMakeName.setText(carMakes.get(i).getName() + "      "); // Set nice formatted for users
-        ImageView iv = view.findViewById(R.id.carMakeImg);
-
+        carMakeName.setText(
+                carMakes.get(i).getName());
+        ImageView iv = view.
+                findViewById(R.id.carMakeImg);
         // Adding the logos into the CarMakes
-        iv.setImageBitmap(getBitmapFromAssets(context,carMakes.get(i).getId() + ".jpg"));
+        iv.setImageBitmap(getBitmapFromAssets(
+                context,carMakes.
+                        get(i).getId() + ".jpg"));
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +100,8 @@ public class CarMakesListAdapter extends BaseAdapter {
     }
     // Connect and display the logos from asset
     // Which mannage by the asset Manager
-    public static Bitmap getBitmapFromAssets(Context context, String fileName) {
+    public static Bitmap getBitmapFromAssets(
+            Context context, String fileName) {
         AssetManager am = context.getAssets();
         InputStream is = null;
         try {

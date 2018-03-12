@@ -8,19 +8,21 @@ public class CarData {
     private String make;
     private int makeId;
     private String model;
+    private int price;
 
     // Default constructor required for calls
     public CarData() {
     }
-    public CarData(int year, String make, int makeId, String model) {
+    public CarData(int year, String make,
+                   int makeId, String model,
+                   int price) {
         this.year = year;
         this.make = make;
         this.makeId = makeId;
         this.model = model;
+        this.price = price;
     }
-
     // setters and getters for the objects.
-
     public int getYear() {
         return year;
     }
@@ -42,6 +44,10 @@ public class CarData {
     public String getModel() {
         return model;
     }
+
+    public int getPrice(){ return price;}
+
+    public void setPrice(int price) { this.price = price;}
 
     public void setModel(String model) { this.model = model; }
 }

@@ -40,10 +40,21 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>
 
-        <activity android:name=".MapsActivity"/>
-        <activity android:name=".CarListActivity"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".account.AccountActivity"/>
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_map_activity" />
+
+        <activity
+            android:name=".CarListActivity"
+            android:label="@string/title_activity_car_list" />
+
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register" />
+
+        <activity
+            android:name=".account.AccountActivity"
+            android:label="@string/title_activity_account"/>
 
         <!--Facebook meta-data elements-->
         <meta-data android:name="com.facebook.sdk.ApplicationId"

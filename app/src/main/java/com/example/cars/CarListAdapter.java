@@ -6,6 +6,7 @@ package com.example.cars;
 // The generated View objects are then used to populate
 // any adapter view that is bound to the adapter.
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +28,14 @@ public class CarListAdapter extends BaseAdapter {
     private LayoutInflater inflter;
 
     // Constructor the the objects.
-    public CarListAdapter(Context context, List<Car> cars, int makeId) {
+    public CarListAdapter(Context context,
+                          List<Car> cars, int makeId) {
         this.context = context;
         this.cars = cars;
         this.makeId = makeId;
         // Get the inflater in the constructor.
         inflter = (LayoutInflater.from(context));
     }
-
     @Override
     // Indicates to Android how many items (or rows)
     // are in the data set that will be presented in the AdapterView.
@@ -43,7 +44,8 @@ public class CarListAdapter extends BaseAdapter {
     }
 
     @Override
-    // get the data item associated with the item (or row) from the AdapterView passed as a
+    // get the data item associated with the item
+    // (or row) from the AdapterView passed as a
     // parameter to the method.
     // This method will be used by Android to fetch the appropriate data to
     // build the item/row in the AdapterView.
@@ -58,29 +60,39 @@ public class CarListAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return i;
     }
-
+    @SuppressLint({"SetTextI18n", "ViewHolder"})
     @Override
     // This method creates the View (which may be a single View component
     // like a TextView or a complex set of widgets in a layout)
     // that displays the data for the specified (by position) item/row in the Adapter.
     public View getView(int i, View view, ViewGroup viewGroup) {
-
         // Inflate the xml which gives the view
-        view = inflter.inflate(R.layout.car_layout, null);
+        view = inflter.
+                inflate(R.layout.car_layout, null);
         // Get the widget with the id name which is defined in the xml
         // of the row
-        TextView carYear = view.findViewById(R.id.carYear);
-        TextView carName = view.findViewById(R.id.carName);
-        ImageView carMakeImg = view.findViewById(R.id.carMakeImg);
 
 
+        TextView carPrice = view.
+                findViewById(R.id.carPrice);
+        TextView carYear = view.
+                findViewById(R.id.carYear);
+        TextView carName = view.
+                findViewById(R.id.carName);
+        ImageView carMakeImg = view.
+                findViewById(R.id.carMakeImg);
         // Populate the row's xml with info from the item.
-        carYear.setText(cars.get(i).getYear() + "     "); // space to set nice formatted for users
-        carName.setText(cars.get(i).getName());
-
+        carPrice.setText(
+                cars.get(i).getPrice() + "");
+        carYear.setText(
+                cars.get(i).getYear() + "");
+        carName.setText(
+                cars.get(i).getName());
         //Adding the logos into the CarMakes
-        carMakeImg.setImageBitmap(CarMakesListAdapter.getBitmapFromAssets(context, makeId + ".jpg"));
-
+        carMakeImg.setImageBitmap(
+                CarMakesListAdapter.
+                getBitmapFromAssets(
+                        context, makeId + ".jpg"));
         // Return the generated view
         return view;
     }

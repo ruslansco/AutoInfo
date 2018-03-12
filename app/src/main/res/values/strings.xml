@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">cars</string>
-    <string name="title_activity_car_list">CarListActivity</string>
+    <string name="app_name">AutoInfo</string>
+    <string name="title_activity_car_list">List of cars</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Database nodes -->
@@ -29,4 +29,9 @@
     <string name="hybrid_map">Hybrid Map</string>
     <string name="satellite_map">Satellite Map</string>
     <string name="terrain_map">Terrain Map</string>
+    <string name="refresh">Refresh</string>
+    <!-- Layout Titles -->
+    <string name="title_activity_register">registration</string>
+    <string name="title_activity_account">Your Account</string>
+    <string name="title_map_activity">Maps</string>
 </resources>

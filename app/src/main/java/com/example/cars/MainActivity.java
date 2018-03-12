@@ -1,11 +1,13 @@
 package com.example.cars;
 
 // Ahmed Alotaibi
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -25,8 +27,10 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     // Manipulate the the list view for user
     // which defines in xml
+    SwipeRefreshLayout swipeRefresh;
     private ListView carMakesList;
     private static List<CarMake> carMakes = new ArrayList<>();
+    @SuppressLint("UseSparseArrays")
     private static Map<Integer, List<Car>> cars = new HashMap<>();
     private List<CarData> carDataList = new ArrayList<>();
 
@@ -113,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
     public static List<Car> getCarsByMakeId(int makeId){
         return cars.get(makeId);
     }
+    @SuppressLint("UseSparseArrays")
     private void createCartList() {
         // Store data in an array manner
         carMakes = new ArrayList<>();
@@ -132,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             }
             carList.add(new Car
                     (carData.getYear(),
+                    carData.getPrice(),
                     carData.getModel()));
             cars.put(makeId, carList);
         }
