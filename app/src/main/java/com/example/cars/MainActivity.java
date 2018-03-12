@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
                 carList = cars.get(makeId);
             }
             carList.add(new Car
-                    (carData.getYear(),
-                    carData.getPrice(),
+                    (carData.getPrice(),
+                    carData.getYear(),
                     carData.getModel()));
             cars.put(makeId, carList);
         }

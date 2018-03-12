@@ -83,11 +83,14 @@ public class CarListAdapter extends BaseAdapter {
                 findViewById(R.id.carMakeImg);
         // Populate the row's xml with info from the item.
         carPrice.setText(
-                cars.get(i).getPrice() + "");
+                "Price: " +
+                cars.get(i).getPrice() + " ");
         carYear.setText(
-                cars.get(i).getYear() + "");
+                "Year: " +
+                cars.get(i).getYear() + " ");
         carName.setText(
-                cars.get(i).getName());
+                "Name: " +
+                cars.get(i).getName() + " ");
         //Adding the logos into the CarMakes
         carMakeImg.setImageBitmap(
                 CarMakesListAdapter.

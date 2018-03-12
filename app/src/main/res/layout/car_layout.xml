@@ -10,8 +10,7 @@
     <ImageView
         android:id="@+id/carMakeImg"
         android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_weight="4"/>
+        android:layout_height="50dp" />
     <TextView
         android:id="@+id/carName"
         android:textStyle="bold"
@@ -38,7 +37,7 @@
         android:layout_weight="1"/>
     <TextView
         android:id="@+id/carPrice"
-        android:textStyle="italic"
+        android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         android:layout_weight="5"
         android:layout_width="9dp"

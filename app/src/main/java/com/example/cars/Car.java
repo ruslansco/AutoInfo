@@ -7,7 +7,7 @@ public class Car {
     private int year;
     private int price;
 
-    public Car(int carDataYear, int year, String name) {
+    public Car(int price, int year, String name) {
         this.name = name;
         this.year = year;
         this.price = price;
@@ -22,7 +22,6 @@ public class Car {
     public void setYear(int year) {
         this.year = year;
     }
-
 
     public int getPrice(){ return price;}
     public void setPrice(int price) { this.price = price;}
