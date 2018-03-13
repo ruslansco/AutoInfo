@@ -4,6 +4,7 @@ package com.example.cars;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -27,7 +28,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     // Manipulate the the list view for user
     // which defines in xml
-    SwipeRefreshLayout swipeRefresh;
+    private SwipeRefreshLayout swipeRefresh;
     private ListView carMakesList;
     private static List<CarMake> carMakes = new ArrayList<>();
     @SuppressLint("UseSparseArrays")
@@ -50,6 +51,18 @@ public class MainActivity extends AppCompatActivity {
         carMakesList.setAdapter(new
                 CarMakesListAdapter(this,
                 carMakes));
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefresh.setRefreshing(false);
+                    }
+                }, 5);
+            }
+        });
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
@@ -85,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         //  This listener to detect the change in the data at a
         //  particular path (including the children at that particular path).
-        carsReference.addValueEventListener(new ValueEventListener() {
+        carsReference.addValueEventListener(
+                new ValueEventListener() {
             @Override
             // “onDataChange” will return the data as an object of DataSnapshot
             // and it can be used in a similar manner as depicted in the code.
@@ -97,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
                             getValue(CarData.class);
                     carDataList.add(carData);
                 }
-                // Connect carMakelist to the adapter to allow data flew between UIs screen
+                // a list to connect carMakelist to the
+                // adapter to allow data flew between UIs screen
                 createCartList();
                 carMakesList.setAdapter(new
                         CarMakesListAdapter(
@@ -137,8 +152,9 @@ public class MainActivity extends AppCompatActivity {
             }
             carList.add(new Car
                     (carData.getPrice(),
-                    carData.getYear(),
-                    carData.getModel()));
+                            carData.getYear(),
+                            carData.getModel(),
+                            carData.getDescription()));
             cars.put(makeId, carList);
         }
     }

@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.List;
 
 // A abstract class that implements the interface
-public class CarListAdapter extends BaseAdapter {
+public class CarListAdapter extends BaseAdapter{
     private final int makeId;
     private Context context;
     private List<Car> cars;
@@ -71,31 +71,40 @@ public class CarListAdapter extends BaseAdapter {
                 inflate(R.layout.car_layout, null);
         // Get the widget with the id name which is defined in the xml
         // of the row
-
-
+        ImageView carImg = view.
+                findViewById(R.id.carImg);
         TextView carPrice = view.
                 findViewById(R.id.carPrice);
         TextView carYear = view.
                 findViewById(R.id.carYear);
         TextView carName = view.
                 findViewById(R.id.carName);
+        TextView description = view.
+                findViewById(R.id.description);
         ImageView carMakeImg = view.
                 findViewById(R.id.carMakeImg);
         // Populate the row's xml with info from the item.
         carPrice.setText(
-                "Price: " +
+                "Price: USD \n\t "+
                 cars.get(i).getPrice() + " ");
         carYear.setText(
-                "Year: " +
+                "Year: \n\t "+
                 cars.get(i).getYear() + " ");
         carName.setText(
-                "Name: " +
+                "Name-Model: \n\t "+
                 cars.get(i).getName() + " ");
+        description.setText(
+                "Description: \n\n\t "+
+                cars.get(i).getDescription() + " ");
         //Adding the logos into the CarMakes
         carMakeImg.setImageBitmap(
                 CarMakesListAdapter.
-                getBitmapFromAssets(
-                        context, makeId + ".jpg"));
+                        getBitmapFromAssets(
+                                context, makeId + ".jpg"));
+        carImg.setImageBitmap(
+                CarMakesListAdapter.
+                        getBitmapFromAssets(
+                                context, makeId + ".png"));
         // Return the generated view
         return view;
     }

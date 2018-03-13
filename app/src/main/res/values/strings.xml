@@ -34,4 +34,11 @@
     <string name="title_activity_register">registration</string>
     <string name="title_activity_account">Your Account</string>
     <string name="title_map_activity">Maps</string>
+    <string name="link">Link:</string>
+    <string name="description">Description</string>
+    <string name="car_image">Car Image</string>
+    <string name="Name">Name</string>
+    <string name="Year">Year</string>
+    <string name="Price">Price</string>
+    <string name="click_for_location">Click for location</string>
 </resources>

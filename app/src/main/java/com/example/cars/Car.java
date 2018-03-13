@@ -6,11 +6,13 @@ public class Car {
     private String name;
     private int year;
     private int price;
+    private String description;
 
-    public Car(int price, int year, String name) {
+    public Car(int price, int year, String name, String description) {
         this.name = name;
         this.year = year;
         this.price = price;
+        this.description = description;
     }
     public String getName() {
         return name;
@@ -22,7 +24,8 @@ public class Car {
     public void setYear(int year) {
         this.year = year;
     }
-
+    public String getDescription(){return description;}
+    public void setDescription(String description){this.description = description;}
     public int getPrice(){ return price;}
     public void setPrice(int price) { this.price = price;}
 }
