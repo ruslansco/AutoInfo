@@ -8,13 +8,20 @@ package com.example.cars;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 // A abstract class that implements the interface
@@ -71,6 +78,8 @@ public class CarListAdapter extends BaseAdapter{
                 inflate(R.layout.car_layout, null);
         // Get the widget with the id name which is defined in the xml
         // of the row
+        Button click = view.
+                findViewById(R.id.click);
         ImageView carImg = view.
                 findViewById(R.id.carImg);
         TextView carPrice = view.
@@ -83,6 +92,15 @@ public class CarListAdapter extends BaseAdapter{
                 findViewById(R.id.description);
         ImageView carMakeImg = view.
                 findViewById(R.id.carMakeImg);
+        // To redirect users to another activity
+        click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new
+                        Intent(context, MapsActivity.class);
+                context.startActivity(intent);
+            }
+        });
         // Populate the row's xml with info from the item.
         carPrice.setText(
                 "Price: USD \n\t "+
@@ -98,7 +116,7 @@ public class CarListAdapter extends BaseAdapter{
                 cars.get(i).getDescription() + " ");
         //Adding the logos into the CarMakes
         carMakeImg.setImageBitmap(
-                CarMakesListAdapter.
+                CarListAdapter.
                         getBitmapFromAssets(
                                 context, makeId + ".jpg"));
         carImg.setImageBitmap(
@@ -107,5 +125,17 @@ public class CarListAdapter extends BaseAdapter{
                                 context, makeId + ".png"));
         // Return the generated view
         return view;
+    }
+    // Which mannage by the asset Manager
+    public static Bitmap getBitmapFromAssets(
+            Context context, String fileName) {
+        AssetManager am = context.getAssets();
+        InputStream is = null;
+        try {
+            is = am.open(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return BitmapFactory.decodeStream(is);
     }
 }

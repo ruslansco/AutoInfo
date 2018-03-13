@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cars">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -41,21 +42,36 @@
             android:value="@string/google_maps_key"/>
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_map_activity" />
-
+            android:name="com.example.cars.MapsActivity"
+            android:label="@string/title_map_activity"
+            android:parentActivityName="com.example.cars.MainActivity"
+            tools:targetApi="jelly_bean">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.cars.MainActivity"/>
+        </activity>
         <activity
             android:name=".CarListActivity"
-            android:label="@string/title_activity_car_list" />
-
+            android:label="@string/title_activity_car_list"
+            android:parentActivityName="com.example.cars.MainActivity"
+            tools:targetApi="jelly_bean" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.cars.MainActivity"/>
+        </activity>
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" />
 
         <activity
             android:name=".account.AccountActivity"
-            android:label="@string/title_activity_account"/>
-
+            android:label="@string/title_activity_account"
+            android:parentActivityName="com.example.cars.MainActivity"
+            tools:targetApi="jelly_bean">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.cars.MainActivity"/>
+        </activity>
         <!--Facebook meta-data elements-->
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

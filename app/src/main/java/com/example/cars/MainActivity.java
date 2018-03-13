@@ -25,19 +25,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.example.cars.R.id.swiperefresh;
+
 public class MainActivity extends AppCompatActivity {
     // Manipulate the the list view for user
     // which defines in xml
     private SwipeRefreshLayout swipeRefresh;
     private ListView carMakesList;
-    private static List<CarMake> carMakes = new ArrayList<>();
+    private static List <CarMake> carMakes = new ArrayList <>();
     @SuppressLint("UseSparseArrays")
-    private static Map<Integer, List<Car>> cars = new HashMap<>();
-    private List<CarData> carDataList = new ArrayList<>();
+    private static Map <Integer, List <Car>> cars = new HashMap <>();
+    private List <CarData> carDataList = new ArrayList <>();
 
     // To read the data from the database,
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference carsReference = databaseReference.child("cars");
+    DatabaseReference databaseReference =
+            FirebaseDatabase.getInstance().getReference();
+    DatabaseReference carsReference =
+            databaseReference.child("cars");
+
     @Override
     // Call, which functions once the system first creates the activity
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +57,21 @@ public class MainActivity extends AppCompatActivity {
         carMakesList.setAdapter(new
                 CarMakesListAdapter(this,
                 carMakes));
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+        swipeRefresh = findViewById(swiperefresh);
+        swipeRefresh.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
-                    public void run() {
-                        swipeRefresh.setRefreshing(false);
+                    public void onRefresh() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // need to refresh context.!
+                                swipeRefresh.setRefreshing(false);
+                            }
+                        }, 5);
                     }
-                }, 5);
-            }
-        });
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                });
+        BottomNavigationView bottomNavigationView =
                 findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
@@ -71,28 +79,29 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.action_search:
-                        break;
-                    case R.id.action_navigation:
-                        Intent intent0 = new
-                                Intent(MainActivity.this,
-                                MapsActivity.class);
-                        startActivity(intent0);
-                        break;
-                    case R.id.action_account:
-                        Intent intent1 = new
-                                Intent(MainActivity.this,
-                                AccountActivity.class);
-                        startActivity(intent1);
-                        break;
-                }
-                return false;
-            }
-        });
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_search:
+                                break;
+                            case R.id.action_navigation:
+                                Intent intent0 = new
+                                        Intent(MainActivity.this,
+                                        MapsActivity.class);
+                                startActivity(intent0);
+                                break;
+                            case R.id.action_account:
+                                Intent intent1 = new
+                                        Intent(MainActivity.this,
+                                        AccountActivity.class);
+                                startActivity(intent1);
+                                break;
+                        }
+                        return false;
+                    }
+                });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -100,53 +109,56 @@ public class MainActivity extends AppCompatActivity {
         //  particular path (including the children at that particular path).
         carsReference.addValueEventListener(
                 new ValueEventListener() {
-            @Override
-            // “onDataChange” will return the data as an object of DataSnapshot
-            // and it can be used in a similar manner as depicted in the code.
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                carDataList = new ArrayList<>();
-                for (DataSnapshot postSnapshot :
-                        dataSnapshot.getChildren()) {
-                    CarData carData = postSnapshot.
-                            getValue(CarData.class);
-                    carDataList.add(carData);
-                }
-                // a list to connect carMakelist to the
-                // adapter to allow data flew between UIs screen
-                createCartList();
-                carMakesList.setAdapter(new
-                        CarMakesListAdapter(
-                            MainActivity.this,
-                        carMakes));
-            }
-            @Override
-            // To handle the error while reading data.
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this,
-                        "Database is not responding",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    // “onDataChange” will return the data as an object of DataSnapshot
+                    // and it can be used in a similar manner as depicted in the code.
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        carDataList = new ArrayList <>();
+                        for (DataSnapshot postSnapshot :
+                                dataSnapshot.getChildren()) {
+                            CarData carData = postSnapshot.
+                                    getValue(CarData.class);
+                            carDataList.add(carData);
+                        }
+                        // a list to connect carMakelist to the
+                        // adapter to allow data flew between UIs screen
+                        createCartList();
+                        carMakesList.setAdapter(new
+                                CarMakesListAdapter(
+                                MainActivity.this,
+                                carMakes));
+                    }
+
+                    @Override
+                    // To handle the error while reading data.
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(MainActivity.this,
+                                "Database is not responding",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
+
     // allowing users to pick a car by make id.
-    public static List<Car> getCarsByMakeId(int makeId){
+    public static List <Car> getCarsByMakeId(int makeId) {
         return cars.get(makeId);
     }
+
     @SuppressLint("UseSparseArrays")
     private void createCartList() {
         // Store data in an array manner
-        carMakes = new ArrayList<>();
-        cars = new HashMap<>();
+        carMakes = new ArrayList <>();
+        cars = new HashMap <>();
         for (CarData carData : carDataList) {
             int makeId = carData.getMakeId();
             CarMake carMake = new
                     CarMake(makeId,
                     carData.getMake());
-            if (!carMakes.contains(carMake)) {
+            if (! carMakes.contains(carMake)) {
                 carMakes.add(carMake);
             }
-            List<Car> carList = new
-                    ArrayList<>();
+            List <Car> carList = new
+                    ArrayList <>();
             if (cars.get(makeId) != null) {
                 carList = cars.get(makeId);
             }

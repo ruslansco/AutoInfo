@@ -47,6 +47,9 @@ public class MapsActivity extends AppCompatActivity
                 (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //allow Up navigation with the app icon in the action bar
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -128,5 +131,16 @@ public class MapsActivity extends AppCompatActivity
            e.printStackTrace();
        }
        return false;
+    }
+    // Get back to the  parent activity
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        this.finish();
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 }

@@ -33,7 +33,9 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-
+        // allow Up navigation with the app icon in the action bar
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mSignOut = (Button) findViewById(R.id.sign_out);
 
@@ -46,38 +48,33 @@ public class AccountActivity extends AppCompatActivity {
         });
 
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView bottomNavigationView =
+                (BottomNavigationView) findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
-
-
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_search:
-                        Intent intent0 = new Intent(AccountActivity.this, MainActivity.class);
+                        Intent intent0 = new
+                                Intent(AccountActivity.this, MainActivity.class);
                         startActivity(intent0);
                         break;
-
                     case R.id.action_navigation:
-                        Intent intent1 = new Intent(AccountActivity.this, MainActivity.class);
+                        Intent intent1 = new
+                                Intent(AccountActivity.this, MainActivity.class);
                         startActivity(intent1);
                         break;
-
                     case R.id.action_account:
-
                         break;
-
                 }
                 return false;
             }
 
     });
 }
-
     private void setupFirebaseListener(){
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -85,9 +82,12 @@ public class AccountActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
                 }else{
-                    Toast.makeText(AccountActivity.this, "Signed out", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    Toast.makeText(AccountActivity.
+                            this, "Signed out", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AccountActivity.
+                            this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             }
@@ -97,15 +97,26 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseAuth.getInstance().addAuthStateListener(mAuthStateListener);
+        FirebaseAuth.getInstance().
+                addAuthStateListener(mAuthStateListener);
     }
-
     @Override
     public void onStop() {
         super.onStop();
         if(mAuthStateListener != null){
-            FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener);
+            FirebaseAuth.getInstance().
+                    removeAuthStateListener(mAuthStateListener);
         }
     }
-
+    // Get back to the  parent activity
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        this.finish();
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
+    }
 }

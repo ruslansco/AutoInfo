@@ -17,28 +17,43 @@ public class CarListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_list);
         carList = findViewById(R.id.carList);
+        //allow Up navigation with the app icon in the action bar
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        int makeId = intent.getIntExtra(
+        final int makeId = intent.getIntExtra(
                 "makeId",
                 1);
         carList.setAdapter(
                 new CarListAdapter(
-                this,
-                MainActivity.
-                        getCarsByMakeId(makeId),
-                makeId));
+                        this,
+                        MainActivity.
+                                getCarsByMakeId(makeId),
+                        makeId));
         swipeRefresh = findViewById(R.id.swiperefresh);
         swipeRefresh.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void run() {
-                        swipeRefresh.setRefreshing(false);
+                    public void onRefresh() {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // need to refresh context.!
+                                swipeRefresh.setRefreshing(false);
+                            }
+                        }, 5);
                     }
-                }, 5);
-            }
-        });
+                });
+    }
+    // Get back to the parent activity
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        this.finish();
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 }
