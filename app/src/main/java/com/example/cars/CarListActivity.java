@@ -2,8 +2,11 @@ package com.example.cars;
 // Ahmed Alotaibi
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -52,23 +55,25 @@ public class CarListActivity extends AppCompatActivity {
     // so that will receive a notification
     // when the user requests a refresh by
     // selecting the refresh action bar item.
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.swiperefresh:
                 swipeRefresh.setRefreshing(true);
-                return true;
+                break;
+            case R.id.home:
+                onBackPressed();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
     // Get back to the parent activity
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         this.finish();
     }
     @Override
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }

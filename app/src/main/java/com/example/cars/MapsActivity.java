@@ -6,6 +6,7 @@ package com.example.cars;
 //import android.support.annotation.NonNull;
 //import android.support.v4.app.ActivityCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -55,7 +56,8 @@ public class MapsActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Marker
-        // Later on, this marker should be used for car makers locations
+        // Later on, this marker should
+        // be used for car makers locations
         mMap.animateCamera(
                 CameraUpdateFactory.zoomIn());
         Marker marker = mMap.addMarker(new MarkerOptions()
@@ -97,7 +99,6 @@ public class MapsActivity extends AppCompatActivity
         inflater.inflate(R.menu.map_options, menu);
         return true;
     }
-    @Override
     // Allow user to choice different types of Maps
     public boolean onOptionsItemSelected(MenuItem item) {
         // Change the map type based on the user's selection.
@@ -113,6 +114,9 @@ public class MapsActivity extends AppCompatActivity
                 return true;
             case R.id.terrain_map:
                 mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                return true;
+            case R.id.home:
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
