@@ -40,33 +40,33 @@ public class CarMakesListAdapter extends BaseAdapter {
         inflter = (LayoutInflater.from(context));
     }
     @Override
-
     // Indicates to Android how many items (or rows)
     // are in the data set that will be presented in the AdapterView.
-    public int getCount() {
-        return carMakes.size();
-    }
+    public int getCount()
+    {return carMakes.size();}
     @Override
-    // get the data item associated with the item (or row) from the AdapterView passed as a
+    // get the data item associated with the item
+    // (or row) from the AdapterView passed as a
     // parameter to the method.
-    // This method will be used by Android to fetch the appropriate data to
+    // This method will be used by Android to fetch
+    // the appropriate data to
     // build the item/row in the AdapterView.
-    public Object getItem(int i) {
-        return carMakes.get(i);
-    }
+    public Object getItem(int i)
+    {return carMakes.get(i);}
     @Override
-    //This method returns the data set’s id for a item/row position of the Adapter.
+    //This method returns the data set’s id for a
+    // item/row position of the Adapter.
     // Typically, the data set id matches the AdapterView rows
     // so this method just returns the same value.
-    public long getItemId(int i) {
-        return i;
-    }
+    public long getItemId(int i)
+    {return i;}
     @SuppressLint("ViewHolder")
-
     @Override
-    // This method creates the View (which may be a single View component
-    // like a TextView or a complex set of widgets in a layout)
-    // that displays the data for the specified (by position) item/row in the Adapter.
+    // This method creates the View (which may be
+    // a single View component
+    // like a TextView or a complex set of widgets
+    // in a layout that displays the data for the
+    // specified (by position) item/row in the Adapter.
     public View getView(
             final int i, View view, ViewGroup viewGroup) {
         // Inflate the xml which gives the view
@@ -74,7 +74,8 @@ public class CarMakesListAdapter extends BaseAdapter {
                 inflate(R.layout.
                         car_make_layout,
                         null);
-        // Get the widget with the id name which is defined in the xml
+        // Get the widget with the id name
+        // which is defined in the xml
         // of the row
         TextView carMakeName = view.
                 findViewById(R.id.carMakeName);
@@ -90,8 +91,10 @@ public class CarMakesListAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, CarListActivity.class);
-                intent.putExtra("makeId", carMakes.get(i).getId());
+                Intent intent = new
+                        Intent(context, CarListActivity.class);
+                intent.putExtra("makeId",
+                        carMakes.get(i).getId());
                 context.startActivity(intent);
             }
         });

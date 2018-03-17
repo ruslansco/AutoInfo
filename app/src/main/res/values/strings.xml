@@ -41,4 +41,10 @@
     <string name="Year">Year</string>
     <string name="Price">Price</string>
     <string name="click_for_location">Click for location</string>
+    <string name="user_name">user name</string>
+    <string name="favourite_cars">Favourite Cars</string>
+    <string name="rank">Rank</string>
+    <string name="email">Email</string>
+    <string name="facebook">Facebook</string>
+    <string name="sign_out">sign out</string>
 </resources>

@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 public class CarListActivity extends AppCompatActivity {
     // Declare the layout xml
     private ListView carList;
     private SwipeRefreshLayout swipeRefresh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,19 @@ public class CarListActivity extends AppCompatActivity {
                         }, 5);
                     }
                 });
+    }
+    // Listen for option item selections
+    // so that will receive a notification
+    // when the user requests a refresh by
+    // selecting the refresh action bar item.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.swiperefresh:
+                swipeRefresh.setRefreshing(true);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     // Get back to the parent activity
     @Override

@@ -4,6 +4,7 @@ package com.example.cars;
 
 // A class for the car's data with its attributes.
 public class CarData {
+    private int carId;
     private int year;
     private String make;
     private int makeId;
@@ -14,9 +15,10 @@ public class CarData {
     // Default constructor required for calls
     public CarData() {
     }
-    public CarData(int year, String make,
+    public CarData(int carId, int year, String make,
                    int makeId, String model,
                    int price, String description) {
+        this.carId = carId;
         this.year = year;
         this.make = make;
         this.makeId = makeId;
@@ -25,6 +27,12 @@ public class CarData {
         this.description = description;
     }
     // setters and getters for the objects.
+
+    public int getCarId() {return carId;}
+
+    public void setCarId(int carId)
+    {this.carId = carId;}
+
     public int getYear() {
         return year;
     }

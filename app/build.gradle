@@ -16,6 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions{
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -34,6 +39,8 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:11.8.0'
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.google.firebase:firebase-database:11.8.0'
+    compile 'com.google.firebase:firebase-storage:11.8.0'
+
     //Universal image loader
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     //Design Support Library dependency

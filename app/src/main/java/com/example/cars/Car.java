@@ -3,17 +3,21 @@ package com.example.cars;
 
 // A class for the car with its setters and getters.
 public class Car {
+    private int id;
     private String name;
     private int year;
     private int price;
     private String description;
 
-    public Car(int price, int year, String name, String description) {
+    Car(int id, int price, int year, String name, String description) {
         this.name = name;
         this.year = year;
         this.price = price;
         this.description = description;
     }
+
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
     public String getName() {
         return name;
     }

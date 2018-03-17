@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -37,13 +38,11 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("UseSparseArrays")
     private static Map <Integer, List <Car>> cars = new HashMap <>();
     private List <CarData> carDataList = new ArrayList <>();
-
     // To read the data from the database,
     DatabaseReference databaseReference =
             FirebaseDatabase.getInstance().getReference();
     DatabaseReference carsReference =
             databaseReference.child("cars");
-
     @Override
     // Call, which functions once the system first creates the activity
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
-
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -101,7 +99,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    // Listen for option item selections
+    // so that we receive a notification
+    // when the user requests a refresh by
+    // selecting the refresh action bar item.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.swiperefresh:
+                swipeRefresh.setRefreshing(true);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -128,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
                                 MainActivity.this,
                                 carMakes));
                     }
-
                     @Override
                     // To handle the error while reading data.
                     public void onCancelled(DatabaseError databaseError) {
@@ -138,12 +147,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
     // allowing users to pick a car by make id.
-    public static List <Car> getCarsByMakeId(int makeId) {
-        return cars.get(makeId);
-    }
-
+    public static List <Car> getCarsByMakeId(int makeId)
+    {return cars.get(makeId);}
     @SuppressLint("UseSparseArrays")
     private void createCartList() {
         // Store data in an array manner
@@ -162,8 +168,11 @@ public class MainActivity extends AppCompatActivity {
             if (cars.get(makeId) != null) {
                 carList = cars.get(makeId);
             }
+            //added carId so late we can use
+            // it for the car's picture maybe..!!
             carList.add(new Car
                     (carData.getPrice(),
+                            carData.getCarId(),
                             carData.getYear(),
                             carData.getModel(),
                             carData.getDescription()));

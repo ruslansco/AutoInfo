@@ -46,83 +46,64 @@ public class CarListAdapter extends BaseAdapter{
     @Override
     // Indicates to Android how many items (or rows)
     // are in the data set that will be presented in the AdapterView.
-    public int getCount() {
-        return cars.size();
-    }
-
+    public int getCount() {return cars.size();}
     @Override
     // get the data item associated with the item
     // (or row) from the AdapterView passed as a
     // parameter to the method.
-    // This method will be used by Android to fetch the appropriate data to
+    // This method will be used by Android to
+    // fetch the appropriate data to
     // build the item/row in the AdapterView.
-    public Object getItem(int i) {
-        return cars.get(i);
-    }
-
+    public Object getItem(int i)
+    {return cars.get(i);}
     @Override
-    // This method returns the data set’s id for a item/row position of the Adapter.
+    // This method returns the data set’s id
+    // for a item/row position of the Adapter.
     // Typically, the data set id matches the AdapterView rows
     // so this method just returns the same value.
-    public long getItemId(int i) {
-        return i;
-    }
+    public long getItemId(int i)
+    {return i;}
     @SuppressLint({"SetTextI18n", "ViewHolder"})
     @Override
-    // This method creates the View (which may be a single View component
-    // like a TextView or a complex set of widgets in a layout)
-    // that displays the data for the specified (by position) item/row in the Adapter.
+    // This method creates the View (which may be
+    // a single View component
+    // like a TextView or a complex set of widgets
+    // in a layout that displays the data for the
+    // specified (by position) item/row in the Adapter.
     public View getView(int i, View view, ViewGroup viewGroup) {
         // Inflate the xml which gives the view
         view = inflter.
                 inflate(R.layout.car_layout, null);
-        // Get the widget with the id name which is defined in the xml
+        // Get the widget with the id name
+        // which is defined in the xml
         // of the row
-        Button click = view.
-                findViewById(R.id.click);
-        ImageView carImg = view.
-                findViewById(R.id.carImg);
-        TextView carPrice = view.
-                findViewById(R.id.carPrice);
-        TextView carYear = view.
-                findViewById(R.id.carYear);
         TextView carName = view.
                 findViewById(R.id.carName);
-        TextView description = view.
-                findViewById(R.id.description);
         ImageView carMakeImg = view.
                 findViewById(R.id.carMakeImg);
-        // To redirect users to another activity
-        click.setOnClickListener(new View.OnClickListener() {
+        // To redirect users to another activity.
+        // We need to redirect it to another activity.
+        // I am thinking to extend the app and have three layouts
+        // Therefore, when we have the third layout set up,
+        // I will make sure to add a button for a user
+        // to find the make car location such as a dealer for a car..!!
+        /*view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent intent = new
                         Intent(context, MapsActivity.class);
                 context.startActivity(intent);
             }
-        });
+        });*/
         // Populate the row's xml with info from the item.
-        carPrice.setText(
-                "Price: USD \n\t "+
-                cars.get(i).getPrice() + " ");
-        carYear.setText(
-                "Year: \n\t "+
-                cars.get(i).getYear() + " ");
         carName.setText(
-                "Name-Model: \n\t "+
+                "Name: \n\t "+
                 cars.get(i).getName() + " ");
-        description.setText(
-                "Description: \n\n\t "+
-                cars.get(i).getDescription() + " ");
         //Adding the logos into the CarMakes
         carMakeImg.setImageBitmap(
-                CarListAdapter.
-                        getBitmapFromAssets(
-                                context, makeId + ".jpg"));
-        carImg.setImageBitmap(
                 CarMakesListAdapter.
                         getBitmapFromAssets(
-                                context, makeId + ".png"));
+                                context, makeId + ".jpg"));
         // Return the generated view
         return view;
     }
