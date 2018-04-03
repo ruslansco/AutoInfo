@@ -21,6 +21,8 @@ public class CarListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Hide titlebar
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_car_list);
         carList = findViewById(R.id.carList);
         //allow Up navigation with the app icon in the action bar

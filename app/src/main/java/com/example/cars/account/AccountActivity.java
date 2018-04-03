@@ -1,15 +1,19 @@
 package com.example.cars.account;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cars.LoginActivity;
@@ -18,6 +22,7 @@ import com.example.cars.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by nulrybekkarshyga on 07.03.18.
@@ -29,19 +34,29 @@ public class AccountActivity extends AppCompatActivity {
 
     //widgets
     private Button mSignOut;
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseAuth mAuth;
+    private ImageView imageView;
+    private TextView email;
+    private TextView mName;
+    private TextView userId;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Hide titlebar
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_account);
         // allow Up navigation with the app icon in the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        mName = (TextView) findViewById(R.id.displayed_name);
+        email = (TextView) findViewById(R.id.email_field);
+        userId = (TextView) findViewById(R.id.user_ID);
+        imageView = (ImageView) findViewById(R.id.user_photo);
         mSignOut = (Button) findViewById(R.id.sign_out);
-
         setupFirebaseListener();
-
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,8 +64,32 @@ public class AccountActivity extends AppCompatActivity {
                 LoginManager.getInstance().logOut();
             }
         });
-
-
+        //get firebase auth instance
+        mAuth = FirebaseAuth.getInstance();
+        //get current user
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        setDataToView(user);
+        //add a auth listener
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                Log.d("AccountActivity", "onAuthStateChanged");
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    setDataToView(user);
+                    //loading image by Picasso
+                    if (user.getPhotoUrl() != null) {
+                        Log.d("MainActivity", "photoURL: " + user.getPhotoUrl());
+                        Picasso.with(AccountActivity.this).load(user.getPhotoUrl()).into(imageView);
+                    }
+                } else {
+                    //user auth state is not existed or closed, return to Login activity
+                    startActivity(new Intent(AccountActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
         BottomNavigationView bottomNavigationView =
                 (BottomNavigationView) findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
@@ -95,6 +134,13 @@ public class AccountActivity extends AppCompatActivity {
                 }
             }
         };
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void setDataToView(FirebaseUser user) {
+        email.setText("Email: " + user.getEmail());
+        mName.setText("Name: " + user.getDisplayName());
+        userId.setText("ID: " + user.getUid());
     }
 
     @Override

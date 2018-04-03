@@ -51,6 +51,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:11.8.0'
     // Swipe
     compile 'com.android.support:support-v4:26.1.0'
+    //Working with Images
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:palette-v7:26.1.0'
+    compile "com.squareup.picasso:picasso:2.4.0"
 }
 
 apply plugin: 'com.google.gms.google-services'

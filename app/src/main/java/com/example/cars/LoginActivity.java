@@ -33,7 +33,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.Arrays;
 
-
+@SuppressWarnings("ConstantConditions")
 public class LoginActivity extends AppCompatActivity {
 
     //Firebase
@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Hide titlebar
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
         mRegister = (TextView) findViewById(R.id.link_register);
