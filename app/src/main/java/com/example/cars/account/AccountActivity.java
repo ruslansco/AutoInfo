@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.cars.LoginActivity;
 import com.example.cars.MainActivity;
 import com.example.cars.R;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -44,7 +45,9 @@ public class AccountActivity extends AppCompatActivity {
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();    }
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+            }
         });
 
 
