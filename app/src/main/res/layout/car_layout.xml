@@ -4,9 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    >
+    android:paddingBottom="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/gradientbackground"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
     <ImageView
         android:id="@+id/carMakeImg"
         android:layout_width="100dp"
@@ -31,4 +37,5 @@
             android:textSize="15sp"
             android:text="@string/Name" />
     </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

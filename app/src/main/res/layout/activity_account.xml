@@ -13,7 +13,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@drawable/gradientbackground"
+                android:background="@drawable/gradientbotbar"
                 android:orientation="vertical">
 
                 <ImageView
@@ -153,17 +153,19 @@
         </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:id="@+id/relLayoutBottom"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradientbackground">
         <android.support.design.widget.BottomNavigationView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/navigation"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             app:menu="@menu/my_navigation_items"
-            android:background="@drawable/gray_white_border_top"
+
+            android:background="@drawable/gradientbotbar"
             >
         </android.support.design.widget.BottomNavigationView>
     </RelativeLayout>

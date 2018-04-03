@@ -6,40 +6,36 @@
     android:layout_height="match_parent"
     android:id="@+id/swiperefresh"
     tools:context="com.example.cars.MainActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/relLayout">
+
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/relLayoutTop"
-            android:layout_alignParentTop="true">
-            <android.support.design.widget.TabLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tabs"
-                android:background="@drawable/gray_white_border_bottom">
-            </android.support.design.widget.TabLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/relLayoutMiddle"
-            android:layout_below="@+id/relLayoutTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
             android:layout_above="@+id/relLayoutBottom"
-            >
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/gradientbackground"/>
             <ListView
                 android:id="@+id/carMakesList"
                 android:layout_width="wrap_content"
-                android:textStyle="italic"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textStyle="italic"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:id="@+id/relLayoutBottom"
             android:layout_alignParentBottom="true">
             <android.support.design.widget.BottomNavigationView
@@ -47,10 +43,9 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/navigation"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 app:menu="@menu/my_navigation_items"
-                android:background="@drawable/gray_white_border_top"
-                >
+                android:background="@drawable/gradientbotbar">
             </android.support.design.widget.BottomNavigationView>
         </RelativeLayout>
     </RelativeLayout>

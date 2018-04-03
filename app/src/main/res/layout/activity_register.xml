@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradientbackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -9,50 +10,63 @@
         android:orientation="vertical"
         android:paddingTop="55dp"
         android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        >
+        android:paddingRight="25dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create a New Account"
-            android:textSize="20sp"
-            android:textColor="@color/Black"
+            android:text="Create a new account"
+            android:textSize="20dp"
+            android:textColor="@color/White"
+            android:fontFamily="@font/robot"
             android:gravity="center_horizontal"/>
 
 
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="331dp"
+            android:layout_height="50dp"
             android:inputType="textEmailAddress"
             android:hint="Email"
+            android:fontFamily="@font/robot"
             android:id="@+id/input_email"
-            android:layout_marginTop="15dp"/>
+            android:textSize="17dp"
+            android:gravity="center"
+            android:textColor="@color/DarkGrey"
+            android:layout_marginTop="35dp"/>
 
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="331dp"
+            android:layout_height="50dp"
             android:inputType="text"
             android:hint="Full Name"
+            android:fontFamily="@font/robot"
+            android:textSize="17dp"
+            android:gravity="center"
             android:id="@+id/input_name"
             android:layout_marginTop="15dp"/>
 
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="331dp"
+            android:layout_height="50dp"
             android:inputType="textPassword"
+            android:fontFamily="@font/robot"
             android:hint="Password"
+            android:gravity="center"
+            android:textSize="17dp"
             android:id="@+id/input_password"
             android:layout_marginTop="15dp"/>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="331dp"
+            android:layout_height="50dp"
             android:inputType="textPassword"
+            android:fontFamily="@font/robot"
             android:hint="Confirm Password"
+            android:textSize="17dp"
+            android:gravity="center"
             android:id="@+id/input_confirm_password"
             android:layout_marginTop="15dp"/>
 
@@ -63,10 +77,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:layout_marginTop="25dp"
-            android:text="Register"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:text="REGISTER"
+            android:textColor="@color/White"
+            android:background="@drawable/transparent_bg_bordered_button"
             android:id="@+id/btn_register"
-            android:padding="12dp"
-            android:background="@drawable/white_onclick_grey"/>
+            android:padding="12dp" />
 
 
     </LinearLayout>
