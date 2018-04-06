@@ -23,6 +23,7 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
+import com.example.cars.User;
 
 /**
  * Created by nulrybekkarshyga on 07.03.18.
@@ -38,8 +39,9 @@ public class AccountActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ImageView imageView;
     private TextView email;
-    private TextView mName;
+    private TextView name;
     private TextView userId;
+    private ImageView settings;
 
 
     @Override
@@ -51,12 +53,13 @@ public class AccountActivity extends AppCompatActivity {
         // allow Up navigation with the app icon in the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mName = (TextView) findViewById(R.id.displayed_name);
+        name = (TextView) findViewById(R.id.displayed_name);
         email = (TextView) findViewById(R.id.email_field);
         userId = (TextView) findViewById(R.id.user_ID);
         imageView = (ImageView) findViewById(R.id.user_photo);
         mSignOut = (Button) findViewById(R.id.sign_out);
         setupFirebaseListener();
+
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +142,7 @@ public class AccountActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setDataToView(FirebaseUser user) {
         email.setText("Email: " + user.getEmail());
-        mName.setText("Name: " + user.getDisplayName());
+        name.setText("Name: " + user.getDisplayName());
         userId.setText("ID: " + user.getUid());
     }
 
@@ -167,5 +170,10 @@ public class AccountActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         onBackPressed();
         return true;
+    }
+
+    public void settingsClick(View v){
+        Intent intent = new Intent(getApplicationContext(), AccountSettings.class);
+        startActivity(intent);
     }
 }

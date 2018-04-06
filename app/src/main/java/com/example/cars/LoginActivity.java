@@ -249,6 +249,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         //Pass the activity result back to Facebook SDK
         mCallbackManager.onActivityResult(requestCode,resultCode,data);
+        //after successful login into the facebook it hide the logout button
+        mFacebookBtn.setVisibility(View.GONE);
     }
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
