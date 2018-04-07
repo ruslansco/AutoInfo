@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AutoInfo.iml" filepath="$PROJECT_DIR$/AutoInfo.iml" />
-      <module fileurl="file://C:\Users\rshak001\AndroidStudioProjects\AutoInfo\AutoInfo-master.iml" filepath="C:\Users\rshak001\AndroidStudioProjects\AutoInfo\AutoInfo-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

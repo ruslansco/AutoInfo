@@ -32,4 +32,8 @@
     <color name="yellow1">#e6e600</color>
     <color name="purple1">#8e2bd4</color>
     <color name="grey">#c3c3c3</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorMild">#9d9c9c</color>
+    <color name="colorDivider">#eae6e6</color>
 </resources>

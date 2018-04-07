@@ -2,7 +2,6 @@ package com.example.cars;
 
 // Ahmed Alotaibi
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,10 +9,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private static List <CarMake> carMakes = new ArrayList <>();
     @SuppressLint("UseSparseArrays")
     private static Map <Integer, List <Car>> cars = new HashMap <>();
+    private ImageButton settings;
     private List <CarData> carDataList = new ArrayList <>();
     // To read the data from the database,
     DatabaseReference databaseReference =
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // the view hierarchy
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        setContentView(R.layout.activity_edit_profile);
         setContentView(R.layout.activity_main);
         carMakesList = findViewById(R.id.carMakesList);
         carMakesList.setAdapter(new
@@ -100,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+        settings = (ImageButton) findViewById(R.id.ed_profile);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
+            }
+        });
     }
     // Listen for option item selections
     // so that we receive a notification

@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+tools:context="com.example.cars.EditProfileActivity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="380dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:background="@drawable/gradientbackground"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/White"
+            android:fontFamily="@font/instafont"
+            android:text="Auto Info"
+            android:textSize="30dp"
+            android:gravity="center"/>
+        <ImageButton
+            android:src="@drawable/ic_settings_black_24dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/transparent_img"
+            android:id="@+id/ed_profile"
+            android:layout_width="60dp"
+            android:layout_height="40dp" />
+        <ImageButton
+            android:src="@drawable/ic_sms_black_24dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/transparent_img"
+            android:layout_width="60dp"
+            android:layout_height="40dp" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/White"
+            android:fontFamily="@font/instafont"
+            android:text="Auto Info"
+            android:textSize="30dp"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_profile_name"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textSize="15dp"
+            android:textColor="@color/colorBlack"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/save_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/Black"
+            android:text="@string/save_edit"
+            android:layout_gravity="center"
+            android:background="@drawable/transparent_bg_bordered_button"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:id="@+id/relLayoutBottom"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/gradientbackground">
+    <android.support.design.widget.BottomNavigationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:menu="@menu/my_navigation_items"
+        android:background="@drawable/gradientbotbar"
+        >
+    </android.support.design.widget.BottomNavigationView>
+</RelativeLayout>
+</RelativeLayout>

@@ -12,21 +12,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cars.EditProfileActivity;
 import com.example.cars.LoginActivity;
 import com.example.cars.MainActivity;
 import com.example.cars.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.squareup.picasso.Picasso;
-import com.example.cars.User;
 
 /**
  * Created by nulrybekkarshyga on 07.03.18.
+ * Modified by Ruslan Shakirov
  */
 
 public class AccountActivity extends AppCompatActivity {
@@ -41,8 +44,8 @@ public class AccountActivity extends AppCompatActivity {
     private TextView email;
     private TextView name;
     private TextView userId;
-    private ImageView settings;
-
+    private ImageButton settings;
+    private String displayName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,10 +59,16 @@ public class AccountActivity extends AppCompatActivity {
         name = (TextView) findViewById(R.id.displayed_name);
         email = (TextView) findViewById(R.id.email_field);
         userId = (TextView) findViewById(R.id.user_ID);
-        imageView = (ImageView) findViewById(R.id.user_photo);
+        //imageView = (ImageView) findViewById(R.id.user_photo);
         mSignOut = (Button) findViewById(R.id.sign_out);
+        settings = (ImageButton) findViewById(R.id.ed_profile);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AccountActivity.this, EditProfileActivity.class));
+            }
+        });
         setupFirebaseListener();
-
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +135,12 @@ public class AccountActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
+                    String displayName = user.getDisplayName();
+                    for (UserInfo userInfo : user.getProviderData()) {
+                        if (displayName == null && userInfo.getDisplayName() != null) {
+                            displayName = userInfo.getDisplayName();
+                        }
+                    }
                 }else{
                     Toast.makeText(AccountActivity.
                             this, "Signed out", Toast.LENGTH_SHORT).show();
@@ -142,7 +157,7 @@ public class AccountActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setDataToView(FirebaseUser user) {
         email.setText("Email: " + user.getEmail());
-        name.setText("Name: " + user.getDisplayName());
+        name.setText(user.getDisplayName());
         userId.setText("ID: " + user.getUid());
     }
 
@@ -170,10 +185,5 @@ public class AccountActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         onBackPressed();
         return true;
-    }
-
-    public void settingsClick(View v){
-        Intent intent = new Intent(getApplicationContext(), AccountSettings.class);
-        startActivity(intent);
     }
 }
