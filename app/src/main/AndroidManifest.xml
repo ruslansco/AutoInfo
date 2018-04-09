@@ -36,6 +36,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key">
         </meta-data>
+        <meta-data android:name="io.fabric.ApiKey"
+            android:value="6c1b851e33fc4e557046d8328455e6affa6dca80">
+        </meta-data>
         <activity
             android:name="com.example.cars.MapsActivity"
             android:label="@string/title_map_activity"

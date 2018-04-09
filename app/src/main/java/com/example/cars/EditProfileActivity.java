@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.cars.Helper.Helper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by Ruslan Shakirov on 4/7/2018.
@@ -26,6 +29,7 @@ public class EditProfileActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_edit_profile);
         //Hide titlebar
         getSupportActionBar().hide();

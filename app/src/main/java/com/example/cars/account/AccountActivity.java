@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.cars.EditProfileActivity;
 import com.example.cars.LoginActivity;
 import com.example.cars.MainActivity;
@@ -26,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.squareup.picasso.Picasso;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by nulrybekkarshyga on 07.03.18.
@@ -51,6 +54,7 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Hide titlebar
+        Fabric.with(this, new Crashlytics());
         getSupportActionBar().hide();
         setContentView(R.layout.activity_account);
         // allow Up navigation with the app icon in the action bar

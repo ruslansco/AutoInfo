@@ -80,4 +80,7 @@
     <string name="edit_profile_hobby">Hobby</string>
     <string name="select_date">Date</string>
     <string name="save_edit">Save edit</string>
+    <string name="auto_info">Auto Info</string>
+    <string name="todo">TODO</string>
+    <string name="todo_1">TODO</string>
 </resources>

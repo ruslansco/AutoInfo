@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swiperefresh"
     tools:context="com.example.cars.MainActivity">
     <RelativeLayout
@@ -26,22 +26,27 @@
                     android:layout_height="40dp"
                     android:textColor="@color/White"
                     android:fontFamily="@font/instafont"
-                    android:text="Auto Info"
-                    android:textSize="30dp"
-                    android:gravity="center"/>
+                    android:text="@string/auto_info"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    tools:targetApi="jelly_bean" />
                 <ImageButton
                     android:src="@drawable/ic_settings_black_24dp"
                     android:layout_alignParentRight="true"
                     android:id="@+id/ed_profile"
                     android:background="@drawable/transparent_img"
                     android:layout_width="60dp"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/todo" />
                 <ImageButton
                     android:src="@drawable/ic_sms_black_24dp"
                     android:layout_alignParentLeft="true"
                     android:background="@drawable/transparent_img"
                     android:layout_width="60dp"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/todo_1" />
             </RelativeLayout>
             <ListView
                 android:id="@+id/carMakesList"
@@ -50,7 +55,7 @@
                 android:layout_marginTop="35dp"
                 android:textStyle="italic"
                 tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
+                tools:layout_editor_absoluteY="0dp"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -68,4 +73,4 @@
             </android.support.design.widget.BottomNavigationView>
         </RelativeLayout>
     </RelativeLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

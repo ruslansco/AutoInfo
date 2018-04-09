@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.cars.account.AccountActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.fabric.sdk.android.Fabric;
 
 import static com.example.cars.R.id.swiperefresh;
 
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // to complete the creation of activity like
         // the view hierarchy
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         getSupportActionBar().hide();
         setContentView(R.layout.activity_edit_profile);
         setContentView(R.layout.activity_main);
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         carMakesList.setAdapter(new
                 CarMakesListAdapter(this,
                 carMakes));
-        swipeRefresh = findViewById(swiperefresh);
+        /*swipeRefresh = findViewById(swiperefresh);
         swipeRefresh.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }, 5);
                     }
-                });
+                });*/
         BottomNavigationView bottomNavigationView =
                 findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
