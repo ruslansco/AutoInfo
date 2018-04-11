@@ -37,6 +37,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="#CCC" />
+                <include layout="@layout/int_image_card" />
+                <include layout="@layout/ext_image_card" />
+                <include layout="@layout/upholstery_image_card" />
+                <include layout="@layout/trim_image_card" />
+                <include layout="@layout/rim_image_card" />
+                <include layout="@layout/engine_image_card" />
 
             </LinearLayout>
 
