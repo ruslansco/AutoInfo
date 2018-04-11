@@ -48,14 +48,11 @@
                     android:layout_alignParentStart="true"
                     android:contentDescription="@string/todo_1" />
             </RelativeLayout>
-            <ListView
-                android:id="@+id/carMakesList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:textStyle="italic"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"/>
+            <com.github.florent37.hollyviewpager.HollyViewPager
+                android:id="@+id/hollyViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:hvp_headerHeight="150dp" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"

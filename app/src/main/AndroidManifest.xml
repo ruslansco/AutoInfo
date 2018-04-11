@@ -50,16 +50,6 @@
             </meta-data>
         </activity>
         <activity
-            android:name=".CarListActivity"
-            android:label="@string/title_activity_car_list"
-            android:parentActivityName="com.example.cars.MainActivity"
-            tools:targetApi="jelly_bean">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.cars.MainActivity">
-            </meta-data>
-        </activity>
-        <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
