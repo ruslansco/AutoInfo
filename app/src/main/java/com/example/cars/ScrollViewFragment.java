@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
 public class ScrollViewFragment
         extends Fragment {
     private static final
-    String TAG = "Main"+
+    String TAG = "Main" +
             "Activity";
     private static final
     String MERCEDES_VEHICLE_IMAGES_ENDPOINT =
@@ -64,10 +64,11 @@ public class ScrollViewFragment
     ImageView rimImageView;
     @Bind(R.id.engineImageView)
     ImageView engineImageView;
+
     public static ScrollViewFragment
-    newInstance(String title){
+    newInstance(String title) {
         Bundle args = new Bundle();
-        args.putString("title",title);
+        args.putString("title", title);
         ScrollViewFragment fragment =
                 new ScrollViewFragment();
         fragment.setArguments(args);
@@ -98,9 +99,25 @@ public class ScrollViewFragment
         assert titleString != null;
         switch (titleString) {
             case "Merc" +
-                    "edes 0" :
+                    "edes 0":
                 vin = "/WDD2130" +
                         "331A123456/";break;
+            case "Merc" +
+                    "edes 1" :
+                vin = "/WDD2462" +
+                        "421N123456/";break;
+            case "Merc" +
+                    "edes 2" :
+                vin = "/WDC15694" +
+                        "31J123456/";break;
+            case "Merc" +
+                    "edes 3" :
+                vin = "/WDD2174" +
+                        "821A123456/";break;
+            case "Merc" +
+                    "edes 4" :
+                vin = "/WME4533" +
+                        "441K012345/";break;
             default:
                 vin = "/WDD2130" +
                         "331A123456/";break;}
@@ -110,35 +127,163 @@ public class ScrollViewFragment
                 "components");
         //loadImages(vin,"components/equipments");
         HollyViewPagerBus.registerScrollView(getActivity(), scrollView);}
+    // Picasso download the image in
+    // another thread and it manages:
+    // the placeholder in the meantime
+    // the image is still downloading
+    // resizing/cropping/centering/scaling/
     private void
-    loadImageFromUrl(String url,ImageView imageView)
-    {Picasso.with(getContext())
-            .load(url).placeholder(R.mipmap.ic_launcher)
+    loadImageFromUrl(String url, ImageView imageView) {
+        Picasso.with(getContext())
+                .load(url).placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .into(imageView, new Callback() {
                     @Override
-                    public void onSuccess(){}
+                    public void onSuccess() {}
                     @Override
                     public void onError() {}});}
     @SuppressLint("StaticFieldLeak")
     private void
     loadImages(final String vin,
                final String specificUrl) {
-        new AsyncTask<URL,
+        new AsyncTask <URL,
                 Void,
-                List<String>>() {
+                List <String>>() {
+            // Override this method to perform
+            // a computation on a background thread.
             @Override
-            protected List<String> doInBackground(URL... urls) {
+            protected List <String> doInBackground(URL... urls) {
                 // Create URL object
-                URL urlVehicle = null;return null;}
+                URL urlVehicle = null;
+                try {
+                    urlVehicle = new URL(MERCEDES_VEHICLE_IMAGES_ENDPOINT + vin +
+                            specificUrl + "?apikey=" + MERCEDES_API_KEY);}catch
+                        (MalformedURLException e){e.printStackTrace();}
+                // Perform HTTP request to the URL and
+                // receive a JSON response back
+                String jsonResponse = "";
+                try {
+                    jsonResponse = makeHttpRequest(urlVehicle);}catch(IOException e){
+                    // Handle the IOException
+                    Log.e(TAG, "IOException is occurred", e);}
+                // Extract relevant fields from the JSON response
+                // and create a String synonyms object
+                List <String> vehicleImages =
+                        extractImagesFromJson(jsonResponse,
+                                specificUrl);
+                return vehicleImages;}
+                // Runs on the UI thread
+                // after doInBackground(URL...).
             @Override
             protected void
-            onPostExecute(List<String> vehicleImages) {}
-        }.execute();}
-    private static
-    List<String> extractImagesFromJson(
+            onPostExecute(List <String> vehicleImages) {
+                if (vehicleImages == null) {
+                    return;
+                }
+                if (specificUrl.equals("vehicle")) {
+                    loadImageFromUrl(vehicleImages.get(0), intImageView);
+                    loadImageFromUrl(vehicleImages.get(1), extImageView);
+                } else if (specificUrl.equals("components")) {
+                    loadImageFromUrl(vehicleImages.get(0), upholsteryImageView);
+                    loadImageFromUrl(vehicleImages.get(1), trimImageView);
+                    loadImageFromUrl(vehicleImages.get(2), rimImageView);
+                    loadImageFromUrl(vehicleImages.get(3), engineImageView);}
+            }}.execute();}
+            // Gets the images from Json Response
+    private static List <String>
+    extractImagesFromJson(
             String jsonResponse,
-            String specificUrl) { return null;}
+            String specificUrl) {
+        try {
+            if (specificUrl.equals("vehicle")) {
+                List <String> vehicleImages =
+                        new ArrayList <>();
+                JSONObject baseJsonResponse =
+                        new JSONObject(jsonResponse);
+                JSONObject intImageJSONObject =
+                        baseJsonResponse.getJSONObject("vehicle")
+                                .getJSONObject("INT1");
+                JSONObject extImageJSONObject =
+                        baseJsonResponse.getJSONObject("vehicle")
+                                .getJSONObject("EXT020");
+
+                // If there are results in the images object
+                vehicleImages.add(intImageJSONObject.getString("url"));
+                vehicleImages.add(extImageJSONObject.getString("url"));
+
+                return vehicleImages;}else if(specificUrl.equals("components")) {
+                List <String> vehicleImages =
+                        new ArrayList <>();
+                JSONObject baseJsonResponse =
+                        new JSONObject(jsonResponse);
+                JSONObject upholsteryImageJSONObject =
+                        baseJsonResponse.getJSONObject("components")
+                                .getJSONObject("upholstery");
+                JSONObject trimImageJSONObject =
+                        baseJsonResponse.getJSONObject("components")
+                                .getJSONObject("trim");
+                JSONObject rimImageJSONObject =
+                        baseJsonResponse.getJSONObject("components")
+                                .getJSONObject("rim");
+                JSONObject engineImageJSONObject =
+                        baseJsonResponse.getJSONObject("components")
+                                .getJSONObject("engine");
+
+                // If there are results in the images object
+                vehicleImages.add(upholsteryImageJSONObject.getString("url"));
+                vehicleImages.add(trimImageJSONObject.getString("url"));
+                vehicleImages.add(rimImageJSONObject.getString("url"));
+                vehicleImages.add(engineImageJSONObject.getString("url"));
+                return vehicleImages;}}catch(JSONException e) {
+            Log.e(TAG, "Problem parsing the " +
+                    "Mercedes JSON results", e);}return null;}
+     // Get json from url
+    // by making HTTP GET mehtod
+    private static String
+    makeHttpRequest(URL url)
+            throws IOException {
+        String jsonResponse = "";
+        if (url != null) {
+            HttpURLConnection urlConnection = null;
+            InputStream inputStream = null;
+            // Making HTTP request
+            try {
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.setReadTimeout(10000 /* milliseconds */);
+                urlConnection.setConnectTimeout(15000 /* milliseconds */);
+                urlConnection.connect();
+                if (urlConnection.getResponseCode() == 200) {
+                    inputStream = urlConnection.getInputStream();
+                    jsonResponse = readFromStream(inputStream);
+                }}catch(IOException e) {
+                // Handle the exception
+                assert urlConnection != null;
+                Log.e(TAG, "Status code " +
+                        urlConnection.getResponseCode(), e);} finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();}
+                if (inputStream != null) {
+                    inputStream.close();}}}return jsonResponse;}
+    // Read data from inputStream
     private static String
     readFromStream(InputStream inputStream)
-            throws IOException {return null;}}
+            throws IOException {
+        // StringBuilder use to stores the objects in heap
+        StringBuilder output = new StringBuilder();
+        if (inputStream != null) {
+            // to read non-char based which is the images
+            InputStreamReader inputStreamReader =
+                    new InputStreamReader(
+                            inputStream,
+                            Charset.forName("UTF-8"));
+            // Read json line by line
+            BufferedReader reader =
+                    new BufferedReader(
+                            inputStreamReader);
+            String line = reader.readLine();
+            while (line != null) {
+                // append to stringBuilder object
+                output.append(line);
+                line = reader.readLine();}}
+        return output.toString();}}
