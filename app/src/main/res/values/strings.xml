@@ -80,8 +80,18 @@
     <string name="edit_profile_hobby">Hobby</string>
     <string name="select_date">Date</string>
     <string name="save_edit">Save edit</string>
-    <string name="auto_info">Auto Info</string>
-    <string name="todo">TODO</string>
     <string name="todo_1">TODO</string>
     <string name="title">TITLE</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">REGISTER</string>
+    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
+    <string name="todo01">TODO</string>
+    <string name="auto_info">Auto Info</string>
+    <string name="password">Password</string>
+    <string name="or">OR</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up.</string>
+    <string name="images">Images</string>
 </resources>

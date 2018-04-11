@@ -47,12 +47,13 @@ public class MainActivity
         setContentView(R.layout.activity_edit_profile);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         //Set Configurator for UI
         hollyViewPager.setConfigurator(
                 new HollyViewPagerConfigurator(){@Override
                     public float
                 getHeightPercentForPage(int page) {
-                        return ((page+5)%15)/15f;}});
+                        return ((page+5)%14)/15f;}});
         hollyViewPager.setAdapter(
                 new FragmentPagerAdapter(
                         getSupportFragmentManager()) {

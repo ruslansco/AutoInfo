@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradientbackground">
@@ -15,84 +16,73 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create a new account"
-            android:textSize="20dp"
+            android:text="@string/create_a_new_account"
+            android:textSize="20sp"
             android:textColor="@color/White"
             android:fontFamily="@font/robot"
-            android:gravity="center_horizontal"/>
-
-
-
+            android:gravity="center_horizontal"
+            tools:targetApi="jelly_bean" />
         <EditText
             android:layout_width="331dp"
             android:layout_height="50dp"
             android:inputType="textEmailAddress"
-            android:hint="Email"
+            android:hint="@string/email"
             android:fontFamily="@font/robot"
             android:id="@+id/input_email"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:gravity="center"
             android:textColor="@color/DarkGrey"
-            android:layout_marginTop="35dp"/>
-
-
+            android:layout_marginTop="35dp"
+            tools:targetApi="jelly_bean" />
         <EditText
             android:layout_width="331dp"
             android:layout_height="50dp"
             android:inputType="text"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             android:fontFamily="@font/robot"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:gravity="center"
             android:id="@+id/input_name"
-            android:layout_marginTop="15dp"/>
-
-
+            android:layout_marginTop="15dp"
+            tools:targetApi="jelly_bean" />
         <EditText
             android:layout_width="331dp"
             android:layout_height="50dp"
             android:inputType="textPassword"
             android:fontFamily="@font/robot"
-            android:hint="Password"
+            android:hint="@string/password"
             android:gravity="center"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:id="@+id/input_password"
-            android:layout_marginTop="15dp"/>
-
+            android:layout_marginTop="15dp"
+            tools:targetApi="jelly_bean" />
         <EditText
             android:layout_width="331dp"
             android:layout_height="50dp"
             android:inputType="textPassword"
             android:fontFamily="@font/robot"
-            android:hint="Confirm Password"
-            android:textSize="17dp"
+            android:hint="@string/confirm_password"
+            android:textSize="17sp"
             android:gravity="center"
             android:id="@+id/input_confirm_password"
-            android:layout_marginTop="15dp"/>
-
-
-
+            android:layout_marginTop="15dp"
+            tools:targetApi="jelly_bean" />
         <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:layout_marginTop="25dp"
             android:gravity="center"
-            android:textSize="15dp"
-            android:text="REGISTER"
+            android:textSize="15sp"
+            android:text="@string/register"
             android:textColor="@color/White"
             android:background="@drawable/transparent_bg_bordered_button"
             android:id="@+id/btn_register"
             android:padding="12dp" />
-
-
     </LinearLayout>
-
     <ProgressBar
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/progressBar"
         android:layout_centerInParent="true"/>
-
-
 </RelativeLayout>

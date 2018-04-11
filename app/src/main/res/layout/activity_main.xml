@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swiperefresh"
+    android:background="#3f4869"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="com.example.cars.MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
