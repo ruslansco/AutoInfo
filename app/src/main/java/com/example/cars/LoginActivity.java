@@ -1,4 +1,7 @@
 package com.example.cars;
+
+//Created and written by Nurlybek Karshiga
+
 //Modified by Ruslan Shakirov
 import android.content.Intent;
 import android.os.Bundle;

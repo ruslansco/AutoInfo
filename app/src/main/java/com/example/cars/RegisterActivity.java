@@ -1,4 +1,6 @@
 package com.example.cars;
+//Created and written by Nurlybek Karshiga
+
 //Modified by Ruslan Shakirov
 import android.content.Context;
 import android.content.Intent;
