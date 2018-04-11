@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,12 +42,36 @@ public class MainActivity
         // Set up Crashlytics to get report about any crashes
         // using Fabric API
         Fabric.with(this, new Crashlytics());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Objects.requireNonNull(getSupportActionBar()).hide();
-        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            Objects.requireNonNull(getSupportActionBar()).hide();}
         setContentView(R.layout.activity_edit_profile);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        //Set Configurator for UI
+        hollyViewPager.setConfigurator(
+                new HollyViewPagerConfigurator(){@Override
+                    public float
+                getHeightPercentForPage(int page) {
+                        return ((page+5)%15)/15f;}});
+        hollyViewPager.setAdapter(
+                new FragmentPagerAdapter(
+                        getSupportFragmentManager()) {
+                    @Override
+                    public Fragment
+                    getItem(int position) {
+                        return ScrollViewFragment.
+                                newInstance((String)
+                                        getPageTitle(position));
+                    }
+                    @RequiresApi(api=Build.VERSION_CODES.KITKAT)
+                    @Override
+                    public int
+                    getCount()
+                    {return pageCount;}
+                    @Override
+                    public CharSequence
+                    getPageTitle(int position) {
+                        return "Mercedes "+position;}});
         BottomNavigationView bottomNavigationView =
                 findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
@@ -70,8 +96,7 @@ public class MainActivity
                                 startActivity(intent1);break;}return false;}});
         ImageButton settings =
                 findViewById(R.id.ed_profile);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
+        settings.setOnClickListener(new View.OnClickListener(){@Override
             public void
             onClick(View v) {
                 startActivity(
