@@ -26,6 +26,11 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import io.fabric.sdk.android.Fabric;
@@ -46,25 +51,31 @@ public class AccountActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView email;
     private TextView name;
+    private TextView age;
     private TextView userId;
     private ImageButton settings;
-    private String displayName;
+    DatabaseReference demoRef;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String userID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Hide titlebar
-        Fabric.with(this, new Crashlytics());
         getSupportActionBar().hide();
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_account);
         // allow Up navigation with the app icon in the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = (TextView) findViewById(R.id.displayed_name);
-        email = (TextView) findViewById(R.id.email_field);
+        age = (TextView) findViewById(R.id.displayed_age);
+        email = (TextView) findViewById(R.id.displayed_email);
         userId = (TextView) findViewById(R.id.user_ID);
         //imageView = (ImageView) findViewById(R.id.user_photo);
         mSignOut = (Button) findViewById(R.id.sign_out);
+        userID = user.getUid();
+        demoRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
         settings = (ImageButton) findViewById(R.id.ed_profile);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +173,29 @@ public class AccountActivity extends AppCompatActivity {
     private void setDataToView(FirebaseUser user) {
         email.setText("Email: " + user.getEmail());
         name.setText(user.getDisplayName());
-        userId.setText("ID: " + user.getUid());
+        demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("name")) {
+                    name.setText(dataSnapshot.child("name").getValue().toString());
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("age")) {
+                    age.setText(dataSnapshot.child("age").getValue().toString());
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        userId.setText("UserID: " + user.getUid());
     }
 
     @Override
