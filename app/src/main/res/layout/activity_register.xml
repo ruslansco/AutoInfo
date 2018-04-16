@@ -3,20 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientbackground">
-
+    android:background="@drawable/gradientbackground"
+    tools:context="com.example.cars.RegisterActivity">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/White"
+            android:fontFamily="@font/instafont"
+            android:text="@string/auto_info"
+            android:textSize="45sp"
+            android:gravity="center"
+            tools:targetApi="jelly_bean" />
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="55dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp">
-
+        android:layout_marginTop="65dp"
+        android:gravity="center">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/create_a_new_account"
+            android:text="CREATE ACCOUNT"
             android:textSize="20sp"
             android:textColor="@color/White"
             android:fontFamily="@font/robot"
@@ -27,22 +39,34 @@
             android:layout_height="50dp"
             android:inputType="textEmailAddress"
             android:hint="@string/email"
+            android:textColorHint="@color/White"
             android:fontFamily="@font/robot"
             android:id="@+id/input_email"
             android:textSize="17sp"
-            android:gravity="center"
-            android:textColor="@color/DarkGrey"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="10dp"
             tools:targetApi="jelly_bean" />
         <EditText
             android:layout_width="331dp"
             android:layout_height="50dp"
             android:inputType="text"
-            android:hint="@string/full_name"
+            android:hint="Name"
+            android:textColorHint="@color/White"
             android:fontFamily="@font/robot"
             android:textSize="17sp"
-            android:gravity="center"
             android:id="@+id/input_name"
+            android:layout_marginTop="15dp"
+            tools:targetApi="jelly_bean" />
+        <EditText
+            android:id="@+id/input_age"
+            android:layout_width="331dp"
+            android:layout_height="50dp"
+            android:hint="Age"
+            android:singleLine="true"
+            android:ems="10"
+            android:inputType="date"
+            android:textColorHint="@color/White"
+            android:fontFamily="@font/robot"
+            android:textSize="17sp"
             android:layout_marginTop="15dp"
             tools:targetApi="jelly_bean" />
         <EditText
@@ -50,8 +74,8 @@
             android:layout_height="50dp"
             android:inputType="textPassword"
             android:fontFamily="@font/robot"
+            android:textColorHint="@color/White"
             android:hint="@string/password"
-            android:gravity="center"
             android:textSize="17sp"
             android:id="@+id/input_password"
             android:layout_marginTop="15dp"
@@ -60,16 +84,17 @@
             android:layout_width="331dp"
             android:layout_height="50dp"
             android:inputType="textPassword"
+            android:textColorHint="@color/White"
             android:fontFamily="@font/robot"
             android:hint="@string/confirm_password"
             android:textSize="17sp"
-            android:gravity="center"
             android:id="@+id/input_confirm_password"
             android:layout_marginTop="15dp"
             tools:targetApi="jelly_bean" />
         <android.support.v7.widget.AppCompatButton
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="25dp"
             android:layout_marginTop="25dp"
             android:gravity="center"

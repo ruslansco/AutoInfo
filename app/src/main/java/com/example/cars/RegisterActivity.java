@@ -1,14 +1,19 @@
 package com.example.cars;
 //Modified by Ruslan Shakirov
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -22,6 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 import io.fabric.sdk.android.Fabric;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -30,26 +37,28 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     //widgets
-    private EditText mEmail, mName,mPassword, mConfirmPassword;
+    private EditText mEmail, mName, mAge, mPassword, mConfirmPassword;
     private Button mRegister;
     private ProgressBar mProgressBar;
 
     //vars
     private Context mContext;
-    private String email, name, password;
+    private String email, age, name, password;
     private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-
+        //Hide titlebar
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
         mRegister = (Button) findViewById(R.id.btn_register);
         mEmail = (EditText) findViewById(R.id.input_email);
         mPassword = (EditText) findViewById(R.id.input_password);
         mConfirmPassword = (EditText) findViewById(R.id.input_confirm_password);
         mName = (EditText) findViewById(R.id.input_name);
+        mAge = (EditText)findViewById(R.id.input_age);
         mContext = RegisterActivity.this;
         mUser = new User();
         initProgressBar();
@@ -70,8 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
                 email = mEmail.getText().toString();
                 name = mName.getText().toString();
                 password = mPassword.getText().toString();
+                age = mAge.getText().toString();
 
-                if (checkInputs(email, name, password, mConfirmPassword.getText().toString())) {
+                if (checkInputs(email, name, age, password, mConfirmPassword.getText().toString())) {
                     if(doStringsMatch(password, mConfirmPassword.getText().toString())){
                         registerNewEmail(email, password);
                     }else{
@@ -82,6 +92,29 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void selectDate(View view) {
+        DialogFragment newFragment = new RegisterActivity.SelectDateFragment();
+        newFragment.show(getSupportFragmentManager(), "DatePicker");
+    }
+    public void populateSetDate(int year, int month, int day) {
+
+        mAge.setText(month+"/"+day+"/"+year);
+    }
+    @SuppressLint("ValidFragment")
+    public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar calendar = Calendar.getInstance();
+            int yy = calendar.get(Calendar.YEAR);
+            int mm = calendar.get(Calendar.MONTH);
+            int dd = calendar.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(getActivity(), this, yy, mm, dd);
+        }
+
+        public void onDateSet(DatePicker view, int yy, int mm, int dd) {
+            populateSetDate(yy, mm+1, dd);
+        }
     }
 
 
@@ -103,10 +136,10 @@ public class RegisterActivity extends AppCompatActivity {
      * @param password
      * @return
      */
-    private boolean checkInputs(String email, String username, String password, String confirmPassword){
+    private boolean checkInputs(String email, String username, String age, String password, String confirmPassword){
 
-        if(email.equals("") || username.equals("") || password.equals("") || confirmPassword.equals("")){
-            Toast.makeText(mContext, "All fields must be filled out", Toast.LENGTH_SHORT).show();
+        if(email.equals("") || username.equals("") || age.equals("")|| password.equals("") || confirmPassword.equals("")){
+            Toast.makeText(mContext, "Oops. Required fields are empty.", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -203,6 +236,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         mUser.setName(name);
+        mUser.setAge(Integer.valueOf(age));
         mUser.setUser_id(userid);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();

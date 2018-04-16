@@ -74,7 +74,7 @@
     <string name="profile_names">Display name</string>
     <string name="induce_smile">Induce Smile</string>
 
-    <string name="edit_profile_name">Name</string>
+    <string name="edit_profile_name">New Name</string>
     <string name="edit_profile_country">Country</string>
     <string name="edit_profile_phone">Phone number</string>
     <string name="edit_profile_hobby">Hobby</string>
@@ -94,4 +94,5 @@
     <string name="or">OR</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up.</string>
     <string name="images">Images</string>
+    <string name="age">Age</string>
 </resources>

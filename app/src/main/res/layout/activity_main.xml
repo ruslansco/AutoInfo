@@ -25,7 +25,7 @@
                 android:background="@drawable/gradientbackground">
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:textColor="@color/White"
                     android:fontFamily="@font/instafont"
                     android:text="@string/auto_info"
@@ -53,6 +53,7 @@
             <com.github.florent37.hollyviewpager.HollyViewPager
                 android:id="@+id/hollyViewPager"
                 android:layout_width="match_parent"
+                android:layout_marginTop="35dp"
                 android:layout_height="match_parent"
                 app:hvp_headerHeight="150dp" />
         </RelativeLayout>

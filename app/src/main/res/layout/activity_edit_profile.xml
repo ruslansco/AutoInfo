@@ -7,7 +7,7 @@ tools:context="com.example.cars.EditProfileActivity">
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="380dp">
+    android:layout_height="340dp">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="35dp"
@@ -40,43 +40,90 @@ tools:context="com.example.cars.EditProfileActivity">
             android:layout_alignParentStart="true"
             android:contentDescription="@string/todo1" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:src="@drawable/photocercle"
+                android:layout_gravity="center"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@null"/>
+            <Button
+                android:layout_gravity="center"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:background="@drawable/white_onclick_grey"
+                android:text="Upload Picture" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/displayed_name"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/startblue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginTop="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColor="@color/White"
-            android:fontFamily="@font/instafont"
-            android:text="@string/auto_info"
-            android:textSize="30sp"
-            android:gravity="center"
-            tools:targetApi="jelly_bean" />
         <EditText
-            android:id="@+id/profile_name"
-            android:layout_width="match_parent"
+            android:id="@+id/edit_name"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_profile_name"
-            android:inputType="textPersonName"
+            android:hint="New Name"
             android:maxLines="1"
             android:padding="12dp"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:singleLine="true" />
-        <Button
-            android:id="@+id/save_edit_button"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/Black"
-            android:text="@string/save_edit"
+            android:onClick="selectDate"
+            android:layout_gravity="center">
+        <EditText
+            android:id="@+id/edit_age"
+            android:layout_width="300dp"
             android:layout_gravity="center"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:padding="8dp"/>
+            android:layout_height="wrap_content"
+            android:hint="New Age"
+            android:padding="12dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:singleLine="true"
+            android:ems="10"
+            android:inputType="date"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+        <Button
+            android:id="@+id/save_edit_button"
+            android:layout_width="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="30dp"
+            android:background="@drawable/white_onclick_grey"
+            android:text="Apply Changes" />
+        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+    </RelativeLayout>
+
+
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="45dp"

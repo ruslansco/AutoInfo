@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AutoInfo.iml" filepath="$PROJECT_DIR$/AutoInfo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AutoInfo_010.iml" filepath="$PROJECT_DIR$/AutoInfo_010.iml" />
-      <module fileurl="file://$PROJECT_DIR$/NewUIWithRecyclerView.iml" filepath="$PROJECT_DIR$/NewUIWithRecyclerView.iml" />
+      <module fileurl="file://C:\Users\Developer\AndroidStudioProjects\AutoInfo7\AutoInfo.iml" filepath="C:\Users\Developer\AndroidStudioProjects\AutoInfo7\AutoInfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AutoInfo7.iml" filepath="$PROJECT_DIR$/.idea/AutoInfo7.iml" />
+      <module fileurl="file://C:\Users\Developer\AndroidStudioProjects\AutoInfo7\AutoInfo_010.iml" filepath="C:\Users\Developer\AndroidStudioProjects\AutoInfo7\AutoInfo_010.iml" />
+      <module fileurl="file://C:\Users\Developer\AndroidStudioProjects\AutoInfo7\NewUIWithRecyclerView.iml" filepath="C:\Users\Developer\AndroidStudioProjects\AutoInfo7\NewUIWithRecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Developer\AndroidStudioProjects\AutoInfo7\app\app.iml" filepath="C:\Users\Developer\AndroidStudioProjects\AutoInfo7\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -9,11 +9,13 @@ public class User {
     private String user_id;
     private String name;
     private String email;
+    private Integer age;
 
     public User(String user_id, String name,String email) {
         this.user_id = user_id;
         this.name = name;
         this.email = email;
+        this.age = age;
     }
 
     public User() {
@@ -39,7 +41,12 @@ public class User {
 
         this.name = name;
     }
-
+    public Integer getAge(){
+        return age;
+    }
+    public Integer setAge(Integer age){
+        return this.age;
+    }
     public String getEmail() {
 
         return email;
