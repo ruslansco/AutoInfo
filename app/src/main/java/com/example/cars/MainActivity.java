@@ -27,14 +27,12 @@ import io.fabric.sdk.android.Fabric;
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
-public class MainActivity
-        extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    int pageCount = 5;
+    int pageCount = 7;
     @Bind(R.id.hollyViewPager)
     HollyViewPager hollyViewPager;
-    protected void
-    onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         // call the super class onCreate
         // to complete the creation of activity like
         // the view hierarchy
@@ -66,15 +64,10 @@ public class MainActivity
                     }
                     @RequiresApi(api=Build.VERSION_CODES.KITKAT)
                     @Override
-                    public int
-                    getCount()
-                    {return pageCount;}
+                    public int getCount() {return pageCount;}
                     @Override
-                    public CharSequence
-                    getPageTitle(int position) {
-                        return "Mercedes "+position;}});
-        BottomNavigationView bottomNavigationView =
-                findViewById(R.id.navigation);
+                    public CharSequence getPageTitle(int position) {return "Mercedes "+position;}});
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
@@ -92,11 +85,10 @@ public class MainActivity
                                         MapsActivity.class);
                                 startActivity(intent0);break;
                             case R.id.action_account:
-                                Intent intent1 = new
-                                        Intent(MainActivity.this,AccountActivity.class);
+                                Intent intent1 = new Intent(
+                                        MainActivity.this,AccountActivity.class);
                                 startActivity(intent1);break;}return false;}});
-        ImageButton settings =
-                findViewById(R.id.ed_profile);
+        ImageButton settings = findViewById(R.id.ed_profile);
         settings.setOnClickListener(new View.OnClickListener(){@Override
             public void
             onClick(View v) {

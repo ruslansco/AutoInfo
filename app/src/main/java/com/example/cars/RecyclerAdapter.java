@@ -18,9 +18,7 @@ public class RecyclerAdapter extends
     given type to represent an item.*/
     @Override
     public RecyclerView.ViewHolder
-    onCreateViewHolder(
-            ViewGroup viewGroup, int type) {
-        View view;
+    onCreateViewHolder(ViewGroup viewGroup, int type) {View view;
         if (type == TYPE_HEADER){
             view = LayoutInflater.
                     from(viewGroup.getContext()).
@@ -35,10 +33,7 @@ public class RecyclerAdapter extends
     the data at the specified position.*/
     @Override
     public void
-    onBindViewHolder(
-            RecyclerView.
-                    ViewHolder
-                    viewHolder, int i){}
+    onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i){}
     /*Returns the total number of items
     in the data set held by the adapter.*/
     @Override
@@ -46,7 +41,6 @@ public class RecyclerAdapter extends
     /*Return the view type of the item at position
       for the purposes of view recycling.*/
     @Override
-    public int
-    getItemViewType(int position) {
+    public int getItemViewType(int position) {
         if (position == 0){return TYPE_HEADER;
         }else{return TYPE_CELL;}}}

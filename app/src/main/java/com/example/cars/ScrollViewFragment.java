@@ -65,18 +65,15 @@ public class ScrollViewFragment
     @Bind(R.id.engineImageView)
     ImageView engineImageView;
 
-    public static ScrollViewFragment
-    newInstance(String title) {
+    public static ScrollViewFragment newInstance(String title) {
         Bundle args = new Bundle();
         args.putString("title", title);
-        ScrollViewFragment fragment =
-                new ScrollViewFragment();
+        ScrollViewFragment fragment = new ScrollViewFragment();
         fragment.setArguments(args);
         return fragment;}
     @Nullable
     @Override
-    public View
-    onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater,
                  ViewGroup container,
                  Bundle savedInstanceState) {
         // loadImages(VIN);
@@ -144,11 +141,8 @@ public class ScrollViewFragment
                     public void onError() {}});}
     @SuppressLint("StaticFieldLeak")
     private void
-    loadImages(final String vin,
-               final String specificUrl) {
-        new AsyncTask <URL,
-                Void,
-                List <String>>() {
+    loadImages(final String vin, final String specificUrl) {
+        new AsyncTask <URL, Void, List <String>>() {
             // Override this method to perform
             // a computation on a background thread.
             @Override
