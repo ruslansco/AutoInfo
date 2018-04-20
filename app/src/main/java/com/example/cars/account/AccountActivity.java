@@ -18,9 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.example.cars.BottomNavigationViewHelper;
+import com.example.cars.ChatActivity;
 import com.example.cars.EditProfileActivity;
 import com.example.cars.LoginActivity;
 import com.example.cars.MainActivity;
+import com.example.cars.MapsActivity;
 import com.example.cars.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,6 +57,7 @@ public class AccountActivity extends AppCompatActivity {
     private TextView age;
     private TextView userId;
     private ImageButton settings;
+    private ImageButton chat;
     DatabaseReference demoRef;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String userID;
@@ -76,6 +80,13 @@ public class AccountActivity extends AppCompatActivity {
         mSignOut = (Button) findViewById(R.id.sign_out);
         userID = user.getUid();
         demoRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
+        chat = (ImageButton) findViewById(R.id.group_chat);
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AccountActivity.this, ChatActivity.class));
+            }
+        });
         settings = (ImageButton) findViewById(R.id.ed_profile);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,32 +128,41 @@ public class AccountActivity extends AppCompatActivity {
                 }
             }
         };
-        BottomNavigationView bottomNavigationView =
-                (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(2);
+        MenuItem menuItem = menu.getItem(3);
         menuItem.setChecked(true);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.action_search:
-                        Intent intent0 = new
-                                Intent(AccountActivity.this, MainActivity.class);
-                        startActivity(intent0);
-                        break;
-                    case R.id.action_navigation:
-                        Intent intent1 = new
-                                Intent(AccountActivity.this, MainActivity.class);
-                        startActivity(intent1);
-                        break;
-                    case R.id.action_account:
-                        break;
-                }
-                return false;
-            }
-
-    });
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.
+                        OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean
+                    onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_search:
+                                Intent intent0 = new Intent(
+                                        AccountActivity.this, MainActivity.class);
+                                startActivity(intent0);
+                                break;
+                            case R.id.action_navigation:
+                                Intent intent1 = new
+                                        Intent(AccountActivity.this,
+                                        MapsActivity.class);
+                                startActivity(intent1);
+                                break;
+                            case R.id.action_chat:
+                                Intent intent2 = new
+                                        Intent(AccountActivity.this,
+                                        ChatActivity.class);
+                                startActivity(intent2);
+                                break;
+                            case R.id.action_account:
+                                break;
+                        }
+                        return false;
+                    }
+                });
 }
     private void setupFirebaseListener(){
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {

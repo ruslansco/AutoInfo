@@ -56,6 +56,8 @@
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"></activity>
+        <activity android:windowSoftInputMode="adjustPan"
+            android:name=".ChatActivity" />
         <activity
             android:name=".EditProfileActivity"
             android:label="Edit Profile"></activity>

@@ -9,4 +9,6 @@
     <dimen name="nav_header_height">238dp</dimen>
     <dimen name="viewpager_margin_fix">29dp</dimen>
     <dimen name="viewpager_margin">-60dp</dimen>
+    <dimen name="design_bottom_navigation_text_size">10sp</dimen>
+    <dimen name="design_bottom_navigation_active_text_size">10sp</dimen>
 </resources>

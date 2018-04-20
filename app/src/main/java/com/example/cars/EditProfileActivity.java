@@ -8,14 +8,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +54,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private Context mContext;
     private Button saveEditButton;
     private String newName;
+    private ImageButton chat;
     private String newAge;
     private int intAge;
     private int year,month,day;
@@ -60,7 +66,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_edit_profile);
         //Hide titlebar
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        getSupportActionBar().hide();
         setTitle("Edit Profile Information");
         userID = user.getUid();
         userRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
@@ -81,6 +87,52 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }
         });
+        chat = (ImageButton) findViewById(R.id.group_chat);
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EditProfileActivity.this, ChatActivity.class));
+            }
+        });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.
+                        OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean
+                    onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_search:
+                                Intent intent0 = new
+                                        Intent(EditProfileActivity.this,
+                                        MainActivity.class);
+                                startActivity(intent0);
+                                break;
+                            case R.id.action_navigation:
+                                Intent intent1 = new
+                                        Intent(EditProfileActivity.this,
+                                        MapsActivity.class);
+                                startActivity(intent1);
+                                break;
+                            case R.id.action_chat:
+                                Intent intent2 = new
+                                        Intent(EditProfileActivity.this,
+                                        ChatActivity.class);
+                                startActivity(intent2);
+                                break;
+                            case R.id.action_account:
+                                Intent intent3 = new Intent(
+                                        EditProfileActivity.this, AccountActivity.class);
+                                startActivity(intent3);
+                                break;
+                        }
+                        return false;
+                    }
+                });
     }
     public void selectDate(View view) {
         DialogFragment newFragment = new SelectDateFragment();

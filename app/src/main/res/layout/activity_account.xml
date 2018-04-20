@@ -27,6 +27,7 @@
             android:layout_height="40dp" />
         <ImageButton
             android:src="@drawable/ic_sms_black_24dp"
+            android:id="@+id/group_chat"
             android:layout_alignParentLeft="true"
             android:background="@drawable/transparent_img"
             android:layout_width="60dp"
