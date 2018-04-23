@@ -62,7 +62,7 @@ tools:context="com.example.cars.EditProfileActivity">
                 android:layout_width="130dp"
                 android:layout_height="30dp"
                 android:background="@drawable/white_onclick_grey"
-                android:text="Upload Picture" />
+                android:text="@string/upload_picture" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@ tools:context="com.example.cars.EditProfileActivity">
             android:layout_width="300dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:hint="New Name"
+            android:hint="@string/new_name"
             android:maxLines="1"
             android:padding="12dp"
             android:textSize="15sp"
@@ -100,7 +100,7 @@ tools:context="com.example.cars.EditProfileActivity">
             android:layout_width="300dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:hint="New Age"
+            android:hint="@string/new_age"
             android:padding="12dp"
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
@@ -118,7 +118,7 @@ tools:context="com.example.cars.EditProfileActivity">
             android:layout_marginTop="10dp"
             android:layout_height="30dp"
             android:background="@drawable/white_onclick_grey"
-            android:text="Apply Changes" />
+            android:text="@string/apply_changes" />
         </LinearLayout>
     </LinearLayout>
     </RelativeLayout>

@@ -18,7 +18,7 @@ class UniversalImageLoader {
     private static final int defaultImage = R.drawable.ic_launcher_background;
     private Context mContext;
 
-    public UniversalImageLoader(Context context) {
+    UniversalImageLoader(Context context) {
         mContext = context;
     }
 
@@ -33,12 +33,10 @@ class UniversalImageLoader {
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(300)).build();
 
-        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(mContext)
+        return new ImageLoaderConfiguration.Builder(mContext)
                 .defaultDisplayImageOptions(defaultOptions)
                 .memoryCache(new WeakMemoryCache())
                 .diskCacheSize(100 * 1024 * 1024).build();
-
-        return configuration;
     }
 
     /**

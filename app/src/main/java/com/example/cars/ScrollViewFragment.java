@@ -35,19 +35,14 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.example.cars.MainActivity.MERCEDES_VEHICLE_IMAGES_ENDPOINT;
+
 public class ScrollViewFragment
         extends Fragment {
     private static final
     String TAG = "Main" +
             "Activity";
-    private static final
-    String MERCEDES_VEHICLE_IMAGES_ENDPOINT =
-            "https://api.mercedes-benz.com" +
-                    "/image/v1/vehicles";
-    private static final
-    String MERCEDES_API_KEY =
-            "c321c388-421e-" +
-                    "4e1f-87d0-62b05593d50c";
+
     @Bind(R.id.scrollView)
     ObservableScrollView scrollView;
     @Bind(R.id.title)
@@ -151,7 +146,7 @@ public class ScrollViewFragment
                 URL urlVehicle = null;
                 try {
                     urlVehicle = new URL(MERCEDES_VEHICLE_IMAGES_ENDPOINT + vin +
-                            specificUrl + "?apikey=" + MERCEDES_API_KEY);}catch
+                            specificUrl + "?apikey=" + MainActivity.MERCEDES_API_KEY);}catch
                         (MalformedURLException e){e.printStackTrace();}
                 // Perform HTTP request to the URL and
                 // receive a JSON response back
@@ -162,10 +157,8 @@ public class ScrollViewFragment
                     Log.e(TAG, "IOException is occurred", e);}
                 // Extract relevant fields from the JSON response
                 // and create a String synonyms object
-                List <String> vehicleImages =
-                        extractImagesFromJson(jsonResponse,
-                                specificUrl);
-                return vehicleImages;}
+                return extractImagesFromJson(jsonResponse,
+                        specificUrl);}
                 // Runs on the UI thread
                 // after doInBackground(URL...).
             @Override

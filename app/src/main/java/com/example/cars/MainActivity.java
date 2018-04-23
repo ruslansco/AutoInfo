@@ -2,46 +2,44 @@ package com.example.cars;
 
 // Ahmed Alotaibi
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
-
 import com.crashlytics.android.Crashlytics;
 import com.example.cars.account.AccountActivity;
-import com.facebook.login.LoginManager;
 import com.github.florent37.hollyviewpager.HollyViewPager;
 import com.github.florent37.hollyviewpager.HollyViewPagerConfigurator;
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.lang.reflect.Field;
 import java.util.Objects;
 
-import io.fabric.sdk.android.Fabric;
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
+    public static final
+    String MERCEDES_VEHICLE_IMAGES_ENDPOINT =
+            "https://api.mercedes-benz.com" +
+                    "/image/v1/vehicles";
+    public static final
+    String MERCEDES_API_KEY =
+            "43676755-ab15-4a6b-" +
+                    "9b02-03c9cadcdf6b";
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    int pageCount = 7;
+    int pageCount = 5;
     @Bind(R.id.hollyViewPager)
     HollyViewPager hollyViewPager;
-    private ImageButton settings;
-    private ImageButton chat;
 
     protected void onCreate(Bundle savedInstanceState) {
         // call the super class onCreate
@@ -57,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        chat = (ImageButton) findViewById(R.id.group_chat);
+        ImageButton chat = findViewById(R.id.group_chat);
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ChatActivity.class));
             }
         });
-        settings = (ImageButton) findViewById(R.id.ed_profile);
-        settings.setOnClickListener(new View.OnClickListener() {
+        ImageButton settings1 = this.findViewById(R.id.ed_profile);
+        settings1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, EditProfileActivity.class));

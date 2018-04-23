@@ -2,6 +2,7 @@ package com.example.cars;
 import android.content.Intent;
 import android.os.*;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -21,7 +22,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.Objects;
+
+import static com.google.firebase.auth.FirebaseAuth.getInstance;
+
 /**
  * Created by Developer on 4/19/2018.
  */
@@ -29,35 +36,31 @@ import java.util.HashMap;
 public class ChatActivity extends AppCompatActivity{
     private EditText editText;
     private DatabaseReference chatRef;
-    private DatabaseReference userRef;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private ListView listView;
-    private FirebaseAuth mAuth;
+    FirebaseUser user = getInstance().getCurrentUser();
     private String name="";
-    private ImageButton settings;
-    private ImageButton chat;
     private String userID;
     HashMap<String,String> map;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_chat);
-        mAuth= FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = getInstance();
         userID = user.getUid();
-        editText=(EditText)findViewById(R.id.edittext);
+        editText= findViewById(R.id.edittext);
         chatRef= FirebaseDatabase.getInstance().getReference("chat");
-        userRef = FirebaseDatabase.getInstance().getReference("users").child(userID).child("name");
-        listView=(ListView)findViewById(R.id.listview);
-        chat = (ImageButton) findViewById(R.id.group_chat);
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userID).child("name");
+        ListView listView = findViewById(R.id.listview);
+        ImageButton chat = findViewById(R.id.group_chat);
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ChatActivity.this, ChatActivity.class));
             }
         });
-        settings = (ImageButton) findViewById(R.id.ed_profile);
+        ImageButton settings = findViewById(R.id.ed_profile);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +71,7 @@ public class ChatActivity extends AppCompatActivity{
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                name=dataSnapshot.getValue().toString();
+                name= Objects.requireNonNull(dataSnapshot.getValue()).toString();
 
             }
             @Override
@@ -80,8 +83,9 @@ public class ChatActivity extends AppCompatActivity{
         ) {
             @Override
             protected void populateView(View v, Message model, int position) {
-                TextView msg=(TextView)v.findViewById(R.id.textView1);
-                msg.setText(model.getUser_name()+" : "+model.getMessage());
+                TextView msg= v.findViewById(R.id.textView1);
+                msg.setText(MessageFormat.format("{0} : {1}", model.getUser_name(),
+                        model.getMessage()));
             }
         };
         listView.setAdapter(adapter);
@@ -121,7 +125,7 @@ public class ChatActivity extends AppCompatActivity{
                 });
     }
     public void send(View view) {
-        chatRef.push().setValue(new Message(editText.getText().toString(),name,userID));
-        editText.setText("");
-    }
-}
+        chatRef.push().setValue(new
+                Message(editText.getText().toString(),
+                name,userID));
+        editText.setText("");}}

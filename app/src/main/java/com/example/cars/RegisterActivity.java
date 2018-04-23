@@ -7,7 +7,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +31,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.MessageFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -101,17 +105,19 @@ public class RegisterActivity extends AppCompatActivity {
     }
     public void populateSetDate(int year, int month, int day) {
 
-        mAge.setText(month+"/"+day+"/"+year);
+        mAge.setText(MessageFormat.format("{0}/{1}/{2}", month, day, year));
     }
     @SuppressLint("ValidFragment")
     public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
             int yy = calendar.get(Calendar.YEAR);
             int mm = calendar.get(Calendar.MONTH);
             int dd = calendar.get(Calendar.DAY_OF_MONTH);
-            return new DatePickerDialog(getActivity(), this, yy, mm, dd);
+            return new DatePickerDialog(Objects.requireNonNull(getActivity()), this, yy, mm, dd);
         }
 
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
@@ -157,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initProgressBar(){
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mProgressBar = findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
@@ -180,20 +186,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (user != null) {
                     // User is authenticated
-
-
-
                 } else {
                     // User is signed out
-
-
                 }
                 // ...
-            }
-        };
-
-    }
-
+            }};}
     /**
      * Register a new email and password to Firebase Authentication
      * @param email
@@ -205,6 +202,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -231,10 +229,11 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * Adds data to the node: "users"
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void addNewUser(){
 
         //add data to the "users" node
-        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
 
         mUser.setName(name);
@@ -263,18 +262,11 @@ public class RegisterActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-
-                            }
+                            if (task.isSuccessful()) { }
                             else{
                                 Toast.makeText(mContext, "couldn't send email", Toast.LENGTH_SHORT).show();
-                                hideProgressBar();
-                            }
-                        }
-                    });
-        }
-
-    }
+                                hideProgressBar();} }
+                    }); } }
 
     /**
      * Redirects the user to the login screen

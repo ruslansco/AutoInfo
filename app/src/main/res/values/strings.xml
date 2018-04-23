@@ -89,10 +89,20 @@
     <string name="todo">TODO</string>
     <string name="todo1">TODO</string>
     <string name="todo01">TODO</string>
-    <string name="auto_info">Auto Info</string>
     <string name="password">Password</string>
     <string name="or">OR</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up.</string>
     <string name="images">Images</string>
+    <string name="auto_info">Auto Info</string>
     <string name="age">Age</string>
+    <string name="expert">Expert</string>
+    <string name="update">update</string>
+    <string name="send">Send</string>
+    <string name="upload_picture">Upload Picture</string>
+    <string name="new_name">New Name</string>
+    <string name="new_age">New Age</string>
+    <string name="apply_changes">Apply Changes</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="name">Name</string>
+    <string name="monthdayyear">%d/%d/%d</string>
 </resources>

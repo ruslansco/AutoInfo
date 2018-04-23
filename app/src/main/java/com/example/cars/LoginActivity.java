@@ -65,12 +65,12 @@ public class LoginActivity extends AppCompatActivity {
         //Hide titlebar
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
-        mRegister = (TextView) findViewById(R.id.link_register);
-        mEmail = (EditText) findViewById(R.id.input_email);
-        mPassword = (EditText) findViewById(R.id.input_password);
-        mLogin = (Button) findViewById(R.id.btn_login);
-        mLogo = (ImageView) findViewById(R.id.logo);
-        mFacebookBtn=(Button) findViewById(R.id.facebookBtn);
+        mRegister = findViewById(R.id.link_register);
+        mEmail = findViewById(R.id.input_email);
+        mPassword = findViewById(R.id.input_password);
+        mLogin = findViewById(R.id.btn_login);
+        mLogo = findViewById(R.id.logo);
+        mFacebookBtn= findViewById(R.id.facebookBtn);
         mAuth= FirebaseAuth.getInstance();
         //Instantiate Callback via Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
@@ -78,8 +78,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mFacebookBtn.setEnabled(false);
-                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email","public_profile"));
-                LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this,
+                        Arrays.asList("email","public_profile"));
+                LoginManager.getInstance().registerCallback(mCallbackManager,
+                        new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Log.d(TAG,"facebook:onSuccess:"+loginResult);
@@ -110,8 +112,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //check if the fields are filled out
-                if (!isEmpty(mEmail.getText().toString())
-                        && !isEmpty(mPassword.getText().toString())) {
+                if (isEmpty(mEmail.getText().toString())
+                        && isEmpty(mPassword.getText().toString())) {
                     showProgressBar();
                     FirebaseAuth.getInstance().
                             signInWithEmailAndPassword(mEmail.
@@ -158,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
      * @return
      */
     private boolean isEmpty(String string) {
-        return string.equals("");
+        return ! string.equals("");
     }
     private void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
@@ -175,7 +177,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initProgressBar() {
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mProgressBar = findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
@@ -196,9 +198,6 @@ public class LoginActivity extends AppCompatActivity {
                             "Welcome ", Toast.LENGTH_SHORT).show();
                     //check if email is verified
                     if (user.isEmailVerified()) {
-                        Toast.makeText(LoginActivity.this,
-                                "Authenticated with: " + user.getEmail(),
-                                Toast.LENGTH_SHORT).show();
                         Intent intent = new
                                 Intent(LoginActivity.this,
                                 MainActivity.class);

@@ -66,7 +66,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_edit_profile);
         //Hide titlebar
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setTitle("Edit Profile Information");
         userID = user.getUid();
         userRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
@@ -140,10 +140,12 @@ public class EditProfileActivity extends AppCompatActivity {
     }
     public void populateSetDate(int year, int month, int day) {
 
-        editProfileAge.setText(month+"/"+day+"/"+year);
+        editProfileAge.setText(String.format(getString(R.string.monthdayyear), month, day, year));
     }
     @SuppressLint("ValidFragment")
-    public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    public class SelectDateFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
@@ -152,10 +154,5 @@ public class EditProfileActivity extends AppCompatActivity {
             int dd = calendar.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), this, yy, mm, dd);
         }
-
         public void onDateSet(DatePicker view, int yy, int mm, int dd) {
-            populateSetDate(yy, mm+1, dd);
-        }
-    }
-
-}
+            populateSetDate(yy, mm+1, dd);}}}

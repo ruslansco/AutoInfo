@@ -6,7 +6,6 @@ package com.example.cars;
 //import android.support.annotation.NonNull;
 //import android.support.v4.app.ActivityCompat;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -25,24 +24,19 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
 
+public class MapsActivity extends AppCompatActivity implements
+        GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
-/* import android.support.v4.content.ContextCompat; */
-
-public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
-
-//    private static final LatLng location1 = new
-//            LatLng(32.377533, -86.209183);
-//    private static Map<Long,Long> carLocations = new HashMap<>();
-    ArrayList<MarkerData> markersArray = new ArrayList<MarkerData>();
-    MarkerData location1 = new MarkerData(32.377533, -86.209183, "Jack Ingram Motors, Inc.");
-    MarkerData location2 = new MarkerData(31.1908, -85.402847, "Mike Schmitz Automotive Group, Inc.");
-    MarkerData location3 = new MarkerData(33.505741, -111.925407, "Phoenix Motor Company");
-    MarkerData location4 = new MarkerData(32.250511, -86.209183, "Chapman Motorcars of Tucson, LLC");
+    ArrayList<MarkerData> markersArray = new ArrayList <>();
+    MarkerData location1 =
+            new MarkerData(32.377533, -86.209183, "Jack Ingram Motors, Inc.");
+    MarkerData location2 =
+            new MarkerData(31.1908, -85.402847, "Mike Schmitz Automotive Group, Inc.");
+    MarkerData location3 =
+            new MarkerData(33.505741, -111.925407, "Phoenix Motor Company");
+    MarkerData location4 =
+            new MarkerData(32.250511, -86.209183, "Chapman Motorcars of Tucson, LLC");
     MarkerData location5 = new MarkerData(32.377533, -110.85675, "Jack Ingram Motors, Inc.");
     MarkerData location6 = new MarkerData(34.709866,-92.40448, "Riverside Motors, Inc.");
     MarkerData location7 = new MarkerData(36.346111,-94.183868, "Silverstar Automotive, Inc.");
@@ -89,10 +83,6 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
     MarkerData location48 = new MarkerData(25.746243,-80.261131,"Bill Ussery Motors Inc.");
     MarkerData location49 = new MarkerData(25.926695,-80.219872,"L. P. Evans Motors W P B, Inc.");
     MarkerData location50 = new MarkerData(27.982317,-82.506027,"Precision Motorcars Inc.");
-
-
-
-
     private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,33 +99,18 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
         //allow Up navigation with the app icon in the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        init();
-
-    }
-
-
-
+        init();}
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Marker
         mMap.animateCamera(
                 CameraUpdateFactory.zoomIn());
-//        Marker marker = mMap.addMarker(new MarkerOptions()
-//                .position(location1)
-//                .title("Jack Ingram Motors, Inc.")
-//                .icon(BitmapDescriptorFactory.
-//                        defaultMarker(BitmapDescriptorFactory.
-//                                HUE_AZURE)).alpha(0.7f)
-//                .draggable(true));marker.setTag(0);
         for(int i = 0 ; i < markersArray.size() ; i++ ) {
-
-            createMarker(markersArray.get(i).getLatitude(), markersArray.get(i).getLongitude(), markersArray.get(i).getTitle());
-        }
-
-
-        mMap.setOnMarkerClickListener(this);
-    }
+            createMarker(markersArray.get(i).getLatitude(),
+                    markersArray.get(i).getLongitude(),
+                    markersArray.get(i).getTitle());}
+        mMap.setOnMarkerClickListener(this);}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -165,24 +140,18 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
                 "down-right below to get the direction",
                 Toast.LENGTH_SHORT).show();
        try {Thread.sleep(10);}catch(InterruptedException e) {
-           e.printStackTrace();
-       }
-           return false;
-    }
-
-
-    protected Marker createMarker(double latitude, double longitude, String title) {
-
-        return mMap.addMarker(new MarkerOptions()
+           e.printStackTrace();}
+           return false;}
+    protected void createMarker(double latitude,
+                                double longitude,
+                                String title) {
+        mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(latitude, longitude))
                 .anchor(0.5f, 0.5f)
                 .title(title)
                 .icon(BitmapDescriptorFactory.
-                      defaultMarker(BitmapDescriptorFactory.
-                               HUE_AZURE)).alpha(0.7f));
-
-    }
-
+                        defaultMarker(BitmapDescriptorFactory.
+                                HUE_AZURE)).alpha(0.7f));}
     private void init(){
         this.markersArray.add(location1);
         this.markersArray.add(location2);
@@ -233,12 +202,4 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
         this.markersArray.add(location47);
         this.markersArray.add(location48);
         this.markersArray.add(location49);
-        this.markersArray.add(location50);
-
-
-    }
-
-
-
-
-}
+        this.markersArray.add(location50);}}
