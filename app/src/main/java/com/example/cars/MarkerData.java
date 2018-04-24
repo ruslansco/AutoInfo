@@ -1,7 +1,5 @@
 package com.example.cars;
 
-import com.google.android.gms.maps.model.LatLng;
-
 /**
  * Created by nulrybekkarshyga on 18.04.18.
  */
