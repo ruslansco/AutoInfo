@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;
     private Button mLogin;
     private ProgressBar mProgressBar;
-    private ImageView mLogo;
 
     //Facebook Sign-in
     private LoginButton loginButton;
@@ -69,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.input_email);
         mPassword = findViewById(R.id.input_password);
         mLogin = findViewById(R.id.btn_login);
-        mLogo = findViewById(R.id.logo);
         mFacebookBtn= findViewById(R.id.facebookBtn);
         mAuth= FirebaseAuth.getInstance();
         //Instantiate Callback via Facebook Login button
@@ -150,7 +148,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        UniversalImageLoader.setImage("assets://money_icon.png", mLogo);
         hideSoftKeyboard();
     }
     /**

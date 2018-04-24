@@ -11,13 +11,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="175dp"
-            android:layout_height="75dp"
-            android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/todo01" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,8 +18,14 @@
             android:text="@string/auto_info"
             android:textColor="@color/White"
             android:fontFamily="@font/instafont"
-            android:textSize="50sp"
+            android:textSize="55sp"
             tools:targetApi="jelly_bean" />
+        <ImageView
+            android:background="@drawable/carlogo2"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal" />
+
         <EditText
             android:id="@+id/input_email"
             android:layout_width="331dp"
