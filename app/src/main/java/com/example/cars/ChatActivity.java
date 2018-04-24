@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cars.account.AccountActivity;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -30,7 +32,7 @@ import java.util.Objects;
 import static com.google.firebase.auth.FirebaseAuth.getInstance;
 
 /**
- * Created by Developer on 4/19/2018.
+ * Created by Ruslan Shakirov on 4/19/2018.
  */
 
 public class ChatActivity extends AppCompatActivity{
@@ -72,7 +74,6 @@ public class ChatActivity extends AppCompatActivity{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 name= Objects.requireNonNull(dataSnapshot.getValue()).toString();
-
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -83,9 +84,11 @@ public class ChatActivity extends AppCompatActivity{
         ) {
             @Override
             protected void populateView(View v, Message model, int position) {
-                TextView msg= v.findViewById(R.id.textView1);
-                msg.setText(MessageFormat.format("{0} : {1}", model.getUser_name(),
+                TextView msgText= v.findViewById(R.id.message_text);
+                TextView messageTime = v.findViewById(R.id.message_time);
+                msgText.setText(MessageFormat.format("{0} : {1}", model.getUser_name(),
                         model.getMessage()));
+                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
             }
         };
         listView.setAdapter(adapter);
@@ -125,7 +128,10 @@ public class ChatActivity extends AppCompatActivity{
                 });
     }
     public void send(View view) {
+        if (editText.getText().toString().trim().equals("")) {
+            Toast.makeText(ChatActivity.this, "Message cannot be blank", Toast.LENGTH_SHORT).show();
+        } else {
         chatRef.push().setValue(new
                 Message(editText.getText().toString(),
                 name,userID));
-        editText.setText("");}}
+        editText.setText("");}}}
