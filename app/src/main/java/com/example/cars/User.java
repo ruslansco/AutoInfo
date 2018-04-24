@@ -2,6 +2,7 @@ package com.example.cars;
 
 /**
  * Created by nulrybekkarshyga on 06.03.18.
+ * Modified by Ruslan Shakirov.
  */
 
 public class User {

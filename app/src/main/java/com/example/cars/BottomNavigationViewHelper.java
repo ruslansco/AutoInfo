@@ -9,7 +9,7 @@ import android.util.Log;
 import java.lang.reflect.Field;
 
 /**
- * Created by Developer on 4/20/2018.
+ * Created by Ruslan Shakirov on 4/20/2018.
  */
 
 public class BottomNavigationViewHelper {

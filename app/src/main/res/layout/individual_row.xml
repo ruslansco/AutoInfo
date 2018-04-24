@@ -9,5 +9,14 @@
         android:textSize="20sp"
         android:textColor="@color/Black"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/message_text" />
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_alignParentBottom="true"
+        android:textSize="10sp"
+        android:textColor="@color/Black"
+        android:layout_height="wrap_content"
+        android:id="@+id/message_time" />
 </LinearLayout>
