@@ -47,6 +47,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:padding="20dp"
             android:id="@+id/listview"
             android:stackFromBottom="true"
             android:transcriptMode="alwaysScroll"

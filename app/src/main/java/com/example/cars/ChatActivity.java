@@ -1,19 +1,28 @@
 package com.example.cars;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.*;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.text.style.BackgroundColorSpan;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.ViewGroup;
 
 import com.example.cars.account.AccountActivity;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -79,16 +88,29 @@ public class ChatActivity extends AppCompatActivity{
             public void onCancelled(DatabaseError error) {
             }
         });
-        FirebaseListAdapter<Message> adapter=new FirebaseListAdapter<Message>(
+
+        final FirebaseListAdapter<Message> adapter=new FirebaseListAdapter<Message>(
                 this,Message.class,R.layout.individual_row,chatRef
         ) {
             @Override
             protected void populateView(View v, Message model, int position) {
                 TextView msgText= v.findViewById(R.id.message_text);
                 TextView messageTime = v.findViewById(R.id.message_time);
-                msgText.setText(MessageFormat.format("{0} : {1}", model.getUser_name(),
-                        model.getMessage()));
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                if (model.getUserID().equals(user.getUid())) {
+                    msgText.setText(MessageFormat.format("{0}: {1}",model.getUser_name(),
+                            model.getMessage()));
+                    messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                    msgText.setTextColor(Color.BLACK);
+                    msgText.setGravity(Gravity.RIGHT | Gravity.END);
+                    messageTime.setGravity(Gravity.RIGHT | Gravity.END);
+                } else {
+                    msgText.setText(MessageFormat.format("{0} : {1}",model.getUser_name(),
+                            model.getMessage()));
+                    messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                    msgText.setTextColor(Color.BLACK);
+                    msgText.setGravity(Gravity.LEFT | Gravity.START);
+                    messageTime.setGravity(Gravity.LEFT | Gravity.START);
+                }
             }
         };
         listView.setAdapter(adapter);

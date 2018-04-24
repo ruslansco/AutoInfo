@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
         android:textColor="@color/Black"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/message_text" />
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_marginTop="1dp"
-        android:layout_alignParentBottom="true"
         android:textSize="10sp"
         android:textColor="@color/Black"
         android:layout_height="wrap_content"
         android:id="@+id/message_time" />
 </LinearLayout>
+</android.support.constraint.ConstraintLayout>
