@@ -19,7 +19,7 @@ repositories {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.cars"
         minSdkVersion 15

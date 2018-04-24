@@ -186,6 +186,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (user != null) {
                     // User is authenticated
+                    name = user.getDisplayName();
+                    email = user.getEmail();
                 } else {
                     // User is signed out
                 }
@@ -240,12 +242,15 @@ public class RegisterActivity extends AppCompatActivity {
         mUser.setAge(Integer.valueOf(age));
         mUser.setUser_id(userid);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(userid);
 
         //insert into users node
-        reference.child(getString(R.string.node_users))
-                .child(userid)
-                .setValue(mUser);
+        reference.child("name")
+                .setValue(mName.getText().toString());
+        reference.child("age")
+                .setValue(mAge.getText().toString());
+
 
         FirebaseAuth.getInstance().signOut();
         redirectLoginScreen();

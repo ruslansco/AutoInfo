@@ -20,27 +20,14 @@ public class RecyclerViewFragment extends Fragment {
     @Nullable
     @Override
     public View
-    onCreateView(
-            @NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.
-                        fragment_recyclerview,
-                container, false);}
+    onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recyclerview, container, false);}
     /*Called after onCreateView has returned, but before any
     saved state has been restored in to the view.*/
     @Override
-    public void
-    onViewCreated(
-            @NonNull View view,
-            Bundle savedInstanceState) {
-        super.onViewCreated(view,
-                savedInstanceState);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this,view);
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(
-                new RecyclerAdapter());
-        HollyViewPagerBus.
-                registerRecyclerView(
-                        getActivity(),
-                        recyclerView);}}
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new RecyclerAdapter());
+        HollyViewPagerBus.registerRecyclerView(getActivity(), recyclerView);}}

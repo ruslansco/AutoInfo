@@ -78,15 +78,10 @@ public class MainActivity extends AppCompatActivity {
                         return ((page + 5) % 14) / 15f;
                     }
                 });
-        hollyViewPager.setAdapter(
-                new FragmentPagerAdapter(
-                        getSupportFragmentManager()) {
+        hollyViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
                     @Override
-                    public Fragment
-                    getItem(int position) {
-                        return ScrollViewFragment.
-                                newInstance((String)
-                                        getPageTitle(position));
+                    public Fragment getItem(int position) {
+                        return ScrollViewFragment.newInstance((String) getPageTitle(position));
                     }
 
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
