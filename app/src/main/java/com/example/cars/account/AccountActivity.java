@@ -21,6 +21,7 @@ import com.crashlytics.android.Crashlytics;
 import com.example.cars.BottomNavigationViewHelper;
 import com.example.cars.ChatActivity;
 import com.example.cars.EditProfileActivity;
+import com.example.cars.IntroActivity;
 import com.example.cars.LoginActivity;
 import com.example.cars.MainActivity;
 import com.example.cars.MapsActivity;
@@ -61,6 +62,7 @@ public class AccountActivity extends AppCompatActivity {
     DatabaseReference demoRef;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String userID;
+    public Button info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class AccountActivity extends AppCompatActivity {
         userId = (TextView) findViewById(R.id.user_ID);
         //imageView = (ImageView) findViewById(R.id.user_photo);
         mSignOut = (Button) findViewById(R.id.sign_out);
+        info = (Button) findViewById(R.id.introslides);
         userID = user.getUid();
         demoRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
         chat = (ImageButton) findViewById(R.id.group_chat);
@@ -163,6 +166,15 @@ public class AccountActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+
+
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent openIntro = new Intent(AccountActivity.this, IntroActivity.class);
+                startActivity(openIntro);
+            }
+        });
 }
     private void setupFirebaseListener(){
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -243,4 +255,5 @@ public class AccountActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
 }

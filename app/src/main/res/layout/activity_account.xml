@@ -183,14 +183,27 @@
         android:layout_marginEnd="10dp"
         android:background="@drawable/white_onclick_grey"
         android:text="@string/update" />
-        <Button
-            android:id="@+id/sign_out"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/white_onclick_grey"
-            android:text="@string/sign_out" />
+
+    <Button
+        android:id="@+id/sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/white_onclick_grey"
+        android:text="@string/sign_out" />
+
+    <Button
+        android:id="@+id/introslides"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/white_onclick_grey"
+        android:text="Try it out!"
+
+        />
+
 </LinearLayout>
     </LinearLayout>
 

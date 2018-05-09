@@ -88,6 +88,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:palette-v7:26.1.0'
     compile 'com.squareup.picasso:picasso:2.4.0'
+    //Intro Slides
+    compile 'agency.tango.android:material-intro-screen:0.0.5'
 }
 
 apply plugin: 'com.google.gms.google-services'
