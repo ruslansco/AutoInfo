@@ -22,6 +22,7 @@ import java.util.Objects;
 public class CarListActivity extends AppCompatActivity {
     // Declare the layout xml
     private ListView carList;
+    private ImageButton settings1;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -34,8 +35,21 @@ public class CarListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int makeId = intent.getIntExtra("makeId", 1);
         carList.setAdapter(new CarListAdapter(this, MainActivity.getCarsByMakeId(makeId), makeId));
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation1);
+        ImageButton back = findViewById(R.id.arrow_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CarListActivity.this, MainActivity.class));
+            }
+        });
+        ImageButton settings1 = this.findViewById(R.id.ed_profile);
+        settings1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CarListActivity.this, EditProfileActivity.class));
+            }
+        });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
@@ -48,10 +62,6 @@ public class CarListActivity extends AppCompatActivity {
                     onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_search:
-                                Intent intent0 = new
-                                        Intent(CarListActivity.this,
-                                        MainActivity.class);
-                                startActivity(intent0);
                                 break;
                             case R.id.action_navigation:
                                 Intent intent1 = new
@@ -66,14 +76,13 @@ public class CarListActivity extends AppCompatActivity {
                                 startActivity(intent2);
                                 break;
                             case R.id.action_account:
-                                Intent intent3 = new Intent(
-                                        CarListActivity.this, AccountActivity.class);
+                                Intent intent3 = new
+                                        Intent(CarListActivity.this,
+                                        AccountActivity.class);
                                 startActivity(intent3);
-                                break;
                         }
                         return false;
                     }
                 });
-
     }
 }

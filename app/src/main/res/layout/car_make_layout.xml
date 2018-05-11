@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="5dp"
-    android:paddingTop="20dp"
-    >
+    android:paddingTop="20dp">
 
     <ImageView
         android:id="@+id/carMakeImg"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"/>
 
     <Space
         android:layout_width="0dp"
@@ -22,7 +22,9 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         android:layout_width="0dp"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
+        android:text="TestText"
         android:layout_weight=".9"
         android:gravity="center_vertical"
         android:visibility="visible" />

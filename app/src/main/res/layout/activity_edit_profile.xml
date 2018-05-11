@@ -32,9 +32,9 @@ tools:context="com.example.cars.EditProfileActivity">
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/todo" />
         <ImageButton
-            android:src="@drawable/ic_sms_black_24dp"
+            android:src="@drawable/ic_arrow_back_black_24dp"
             android:layout_alignParentLeft="true"
-            android:id="@+id/group_chat"
+            android:id="@+id/arrow_back"
             android:background="@drawable/transparent_img"
             android:layout_width="60dp"
             android:layout_height="40dp"

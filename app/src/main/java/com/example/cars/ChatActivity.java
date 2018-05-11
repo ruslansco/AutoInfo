@@ -64,11 +64,11 @@ public class ChatActivity extends AppCompatActivity{
         chatRef= FirebaseDatabase.getInstance().getReference("chat");
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userID).child("name");
         ListView listView = findViewById(R.id.listview);
-        ImageButton chat = findViewById(R.id.group_chat);
-        chat.setOnClickListener(new View.OnClickListener() {
+        ImageButton back = findViewById(R.id.arrow_back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChatActivity.this, ChatActivity.class));
+                startActivity(new Intent(ChatActivity.this, MainActivity.class));
             }
         });
         ImageButton settings = findViewById(R.id.ed_profile);

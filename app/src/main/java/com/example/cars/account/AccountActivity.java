@@ -77,7 +77,6 @@ public class AccountActivity extends AppCompatActivity {
         name = (TextView) findViewById(R.id.displayed_name);
         age = (TextView) findViewById(R.id.displayed_age);
         email = (TextView) findViewById(R.id.displayed_email);
-        userId = (TextView) findViewById(R.id.user_ID);
         //imageView = (ImageView) findViewById(R.id.user_photo);
         mSignOut = (Button) findViewById(R.id.sign_out);
         info = (Button) findViewById(R.id.introslides);
@@ -227,7 +226,6 @@ public class AccountActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        userId.setText("UserID: " + user.getUid());
     }
 
     @Override

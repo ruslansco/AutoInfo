@@ -75,8 +75,8 @@ public class CarListAdapter extends BaseAdapter {
         ImageView carMakeImg = view.findViewById(R.id.carMakeImg);
 
         // Populate the row's xml with info from the item.
-        carName.setText(("Name: \n\t  " +cars.get(i).getName()));
-        carYear.setText(("Year: \n\t  " +cars.get(i).getYear()));
+        carName.setText(("Make: " +cars.get(i).getName()));
+        carYear.setText(("Year: " +cars.get(i).getYear()));
         //Adding the logs into the CarMakes
         carMakeImg.setImageBitmap(CarMakesListAdapter.getBitmapFromAssets(context, makeId + ".jpg"));
 

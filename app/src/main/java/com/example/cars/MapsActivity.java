@@ -6,14 +6,22 @@ package com.example.cars;
 //import android.support.annotation.NonNull;
 //import android.support.v4.app.ActivityCompat;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.cars.account.AccountActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,6 +32,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MapsActivity extends AppCompatActivity implements
         GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
@@ -84,10 +93,12 @@ public class MapsActivity extends AppCompatActivity implements
     MarkerData location49 = new MarkerData(25.926695,-80.219872,"L. P. Evans Motors W P B, Inc.");
     MarkerData location50 = new MarkerData(27.982317,-82.506027,"Precision Motorcars Inc.");
     private GoogleMap mMap;
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and
@@ -99,7 +110,56 @@ public class MapsActivity extends AppCompatActivity implements
         //allow Up navigation with the app icon in the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        init();}
+        init();
+        ImageButton back = findViewById(R.id.arrow_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MapsActivity.this, MainActivity.class));
+            }
+        });
+        ImageButton settings = findViewById(R.id.ed_profile);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MapsActivity.this, EditProfileActivity.class));
+            }
+        });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(1);
+        menuItem.setChecked(true);
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.
+                        OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean
+                    onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_search:
+                                Intent intent0 = new Intent(
+                                        MapsActivity.this, MainActivity.class);
+                                startActivity(intent0);
+                                break;
+                            case R.id.action_navigation:
+                                break;
+                            case R.id.action_chat:
+                                Intent intent1 = new
+                                        Intent(MapsActivity.this,
+                                        ChatActivity.class);
+                                startActivity(intent1);
+                                break;
+                            case R.id.action_account:
+                                Intent intent3 = new
+                                        Intent(MapsActivity.this,
+                                        AccountActivity.class);
+                                startActivity(intent3);
+                        }
+                        return false;
+                    }
+                });}
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -111,7 +171,8 @@ public class MapsActivity extends AppCompatActivity implements
                     markersArray.get(i).getLongitude(),
                     markersArray.get(i).getTitle());}
         mMap.setOnMarkerClickListener(this);}
-    @Override
+    /*
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.map_options, menu);
@@ -132,6 +193,7 @@ public class MapsActivity extends AppCompatActivity implements
                 onBackPressed();return true;
             default:
                 return super.onOptionsItemSelected(item);}}
+                */
    @Override
     public boolean onMarkerClick(Marker marker) {
         //Integer clickCount = (Integer) marker.getTag();

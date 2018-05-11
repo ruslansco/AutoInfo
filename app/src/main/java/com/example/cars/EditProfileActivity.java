@@ -87,17 +87,17 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }
         });
-        chat = (ImageButton) findViewById(R.id.group_chat);
-        chat.setOnClickListener(new View.OnClickListener() {
+        ImageButton back = findViewById(R.id.arrow_back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EditProfileActivity.this, ChatActivity.class));
+                startActivity(new Intent(EditProfileActivity.this, MainActivity.class));
             }
         });
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(2);
+        MenuItem menuItem = menu.getItem(3);
         menuItem.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.
@@ -125,9 +125,6 @@ public class EditProfileActivity extends AppCompatActivity {
                                 startActivity(intent2);
                                 break;
                             case R.id.action_account:
-                                Intent intent3 = new Intent(
-                                        EditProfileActivity.this, AccountActivity.class);
-                                startActivity(intent3);
                                 break;
                         }
                         return false;

@@ -1,13 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<fragment
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:background="@drawable/gradientbackground"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/White"
+            android:fontFamily="@font/instafont"
+            android:text="@string/auto_info"
+            android:textSize="30sp"
+            android:gravity="center"
+            tools:targetApi="jelly_bean" />
+        <ImageButton
+            android:src="@drawable/ic_settings_black_24dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/transparent_img"
+            android:id="@+id/ed_profile"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/todo" />
+        <ImageButton
+            android:layout_alignParentLeft="true"
+            android:id="@+id/arrow_back"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="@drawable/transparent_img"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/todo1" />
+    </RelativeLayout>
+<fragment
     android:id="@+id/map"
+    android:layout_marginTop="35dp"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="45dp"
     tools:context="com.example.cars.MapsActivity">
-
 </fragment>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradientbackground">
+        <android.support.design.widget.BottomNavigationView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:menu="@menu/my_navigation_items"
+            android:background="@drawable/gradientbotbar">
+        </android.support.design.widget.BottomNavigationView>
+    </RelativeLayout>
+</RelativeLayout>

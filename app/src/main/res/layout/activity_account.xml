@@ -129,27 +129,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="280dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:paddingStart="25dp"
-            tools:ignore="RtlSymmetry">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_phone_android_black_24dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:id="@+id/user_ID"
-                android:textStyle="bold"
-                android:paddingStart="5dp" />
-        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -174,6 +154,7 @@
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:layout_gravity="center">
     <Button
         android:id="@+id/btn_refresh"
@@ -200,8 +181,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/white_onclick_grey"
-        android:text="Try it out!"
-
+        android:text="Tutorial"
         />
 
 </LinearLayout>

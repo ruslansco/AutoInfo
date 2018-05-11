@@ -53,27 +53,12 @@ public class MainActivity extends AppCompatActivity {
         // using Fabric API
         Fabric.with(this, new Crashlytics());
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_edit_profile);
         setContentView(R.layout.activity_main);
         carMakesList = findViewById(R.id.carMakesList);
         carMakesList.setAdapter(new
                 CarMakesListAdapter(this,
                 carMakes));
         /*ButterKnife.bind(this);*/
-        ImageButton chat = findViewById(R.id.group_chat);
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ChatActivity.class));
-            }
-        });
-        ImageButton settings1 = this.findViewById(R.id.ed_profile);
-        settings1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
-            }
-        });
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
@@ -109,16 +94,6 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
-        ImageButton settings = findViewById(R.id.ed_profile);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void
-            onClick(View v) {
-                startActivity(
-                        new Intent(MainActivity.this,
-                                EditProfileActivity.class));
-            }
-        });
     }
     @Override
     protected void onStart() {

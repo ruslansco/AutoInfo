@@ -30,12 +30,12 @@
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/todo" />
         <ImageButton
-            android:src="@drawable/ic_sms_black_24dp"
             android:layout_alignParentLeft="true"
-            android:id="@+id/group_chat"
-            android:background="@drawable/transparent_img"
+            android:id="@+id/arrow_back"
+            android:src="@drawable/ic_arrow_back_black_24dp"
             android:layout_width="60dp"
             android:layout_height="40dp"
+            android:background="@drawable/transparent_img"
             android:layout_alignParentStart="true"
             android:contentDescription="@string/todo1" />
     </RelativeLayout>
@@ -47,7 +47,9 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="20dp"
+            android:padding="10dp"
+            android:divider="@drawable/gradientbackground"
+            android:dividerHeight="0.5dp"
             android:id="@+id/listview"
             android:stackFromBottom="true"
             android:transcriptMode="alwaysScroll"
@@ -76,7 +78,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:id="@+id/relLayoutBottom"
             android:layout_alignParentBottom="true"
             android:background="@drawable/gradientbackground">
             <android.support.design.widget.BottomNavigationView
