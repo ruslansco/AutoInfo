@@ -23,7 +23,7 @@
             android:layout_below="@+id/message_user"
             android:textColor="@android:color/white"
             android:layout_marginTop="5dp"
-            android:text=""
+            android:text="TEST"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp" />
 

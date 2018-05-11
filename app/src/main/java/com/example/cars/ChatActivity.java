@@ -1,11 +1,18 @@
 package com.example.cars;
+import android.app.Notification;
+import android.app.PictureInPictureParams;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.media.SoundPool;
+import android.net.Uri;
 import android.os.*;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +40,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -97,17 +105,21 @@ public class ChatActivity extends AppCompatActivity{
                 TextView msgText= v.findViewById(R.id.message_text);
                 TextView messageTime = v.findViewById(R.id.message_time);
                 if (model.getUserID().equals(user.getUid())) {
-                    msgText.setText(MessageFormat.format("{0}: {1}",model.getUser_name(),
+                    msgText.setText(MessageFormat.format("{0}",
                             model.getMessage()));
                     messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
-                    msgText.setTextColor(Color.BLACK);
+                    v.setBackgroundResource(R.drawable.my_message);
+                    msgText.setTextColor(Color.WHITE);
+                    messageTime.setTextColor(Color.WHITE);
                     msgText.setGravity(Gravity.RIGHT | Gravity.END);
                     messageTime.setGravity(Gravity.RIGHT | Gravity.END);
                 } else {
-                    msgText.setText(MessageFormat.format("{0} : {1}",model.getUser_name(),
+                    msgText.setText(MessageFormat.format("{0}: {1}",model.getUser_name(),
                             model.getMessage()));
                     messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
-                    msgText.setTextColor(Color.BLACK);
+                    v.setBackgroundResource(R.drawable.their_message);
+                    msgText.setTextColor(Color.WHITE);
+                    messageTime.setTextColor(Color.WHITE);
                     msgText.setGravity(Gravity.LEFT | Gravity.START);
                     messageTime.setGravity(Gravity.LEFT | Gravity.START);
                 }
@@ -156,4 +168,12 @@ public class ChatActivity extends AppCompatActivity{
         chatRef.push().setValue(new
                 Message(editText.getText().toString(),
                 name,userID));
-        editText.setText("");}}}
+        editText.setText("");}
+    Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+       Ringtone notification = RingtoneManager.getRingtone(getApplicationContext(), sound);
+        notification.play();
+
+        //Notification notification = builder.build();
+        //notification.defaults |= Notification.DEFAULT_SOUND;
+        //notification.defaults |= Notification.DEFAULT_VIBRATE;
+    }}

@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:padding="10dp"
-            android:divider="@drawable/gradientbackground"
+            android:divider="#fff"
             android:dividerHeight="0.5dp"
             android:id="@+id/listview"
             android:stackFromBottom="true"
