@@ -2,7 +2,10 @@ package com.example.cars.account;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -35,7 +38,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -52,7 +59,9 @@ public class AccountActivity extends AppCompatActivity {
     private Button mSignOut;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth mAuth;
-    private ImageView imageView;
+    private Uri filePath;
+    private ImageView img;
+    private final int PICK_IMAGE_REQUEST=71;
     private TextView email;
     private TextView name;
     private TextView age;
@@ -76,6 +85,7 @@ public class AccountActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = (TextView) findViewById(R.id.displayed_name);
         age = (TextView) findViewById(R.id.displayed_age);
+        img = (ImageView) findViewById(R.id.displayed_img);
         email = (TextView) findViewById(R.id.displayed_email);
         //imageView = (ImageView) findViewById(R.id.user_photo);
         mSignOut = (Button) findViewById(R.id.sign_out);
@@ -109,27 +119,6 @@ public class AccountActivity extends AppCompatActivity {
         //get current user
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         setDataToView(user);
-        //add a auth listener
-        authListener = new FirebaseAuth.AuthStateListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                Log.d("AccountActivity", "onAuthStateChanged");
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    setDataToView(user);
-                    //loading image by Picasso
-                    if (user.getPhotoUrl() != null) {
-                        Log.d("MainActivity", "photoURL: " + user.getPhotoUrl());
-                        Picasso.with(AccountActivity.this).load(user.getPhotoUrl()).into(imageView);
-                    }
-                } else {
-                    //user auth state is not existed or closed, return to Login activity
-                    startActivity(new Intent(AccountActivity.this, LoginActivity.class));
-                    finish();
-                }
-            }
-        };
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
@@ -222,10 +211,13 @@ public class AccountActivity extends AppCompatActivity {
                     age.setText(dataSnapshot.child("age").getValue().toString());
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
     }
 
     @Override
@@ -253,5 +245,4 @@ public class AccountActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
 }

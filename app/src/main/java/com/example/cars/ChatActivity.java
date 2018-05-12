@@ -71,7 +71,7 @@ public class ChatActivity extends AppCompatActivity{
         editText= findViewById(R.id.edittext);
         chatRef= FirebaseDatabase.getInstance().getReference("chat");
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userID).child("name");
-        ListView listView = findViewById(R.id.listview);
+        final ListView listView = findViewById(R.id.listview);
         ImageButton back = findViewById(R.id.arrow_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +108,10 @@ public class ChatActivity extends AppCompatActivity{
                     msgText.setText(MessageFormat.format("{0}",
                             model.getMessage()));
                     messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                    ViewGroup.MarginLayoutParams constraintParams = (ViewGroup.MarginLayoutParams) listView
+                            .getLayoutParams();
+                    constraintParams.setMargins(50, 0, 0, 0);
+
                     v.setBackgroundResource(R.drawable.my_message);
                     msgText.setTextColor(Color.WHITE);
                     messageTime.setTextColor(Color.WHITE);

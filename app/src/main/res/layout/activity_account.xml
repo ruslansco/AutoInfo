@@ -47,8 +47,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/photocercle"
                     android:layout_gravity="center"
+                    android:id="@+id/displayed_img"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
                     android:layout_marginTop="25dp"
