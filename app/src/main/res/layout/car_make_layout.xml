@@ -10,7 +10,8 @@
         android:id="@+id/carMakeImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" />
 
     <Space
         android:layout_width="0dp"
@@ -24,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:text="TestText"
+        android:text="@string/testtext11"
         android:layout_weight=".9"
         android:gravity="center_vertical"
         android:visibility="visible" />

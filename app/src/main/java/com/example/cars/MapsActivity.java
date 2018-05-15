@@ -39,19 +39,25 @@ public class MapsActivity extends AppCompatActivity implements
 
     ArrayList<MarkerData> markersArray = new ArrayList <>();
     MarkerData location1 =
-            new MarkerData(32.377533, -86.209183, "Jack Ingram Motors, Inc.");
+            new MarkerData(42.764297, -73.756150, "Northeast Acura dealer.");
     MarkerData location2 =
-            new MarkerData(31.1908, -85.402847, "Mike Schmitz Automotive Group, Inc.");
+            new MarkerData(41.676863, -86.244596, "Am General LLC dealer.");
     MarkerData location3 =
-            new MarkerData(33.505741, -111.925407, "Phoenix Motor Company");
+            new MarkerData(39.768466, -75.105769, "IronHorse dealer.");
     MarkerData location4 =
-            new MarkerData(32.250511, -86.209183, "Chapman Motorcars of Tucson, LLC");
-    MarkerData location5 = new MarkerData(32.377533, -110.85675, "Jack Ingram Motors, Inc.");
-    MarkerData location6 = new MarkerData(34.709866,-92.40448, "Riverside Motors, Inc.");
-    MarkerData location7 = new MarkerData(36.346111,-94.183868, "Silverstar Automotive, Inc.");
-    MarkerData location8 = new MarkerData(33.652634,-117.865685, "Fletcher Jones Motor Cars, Inc.");
-    MarkerData location9 = new MarkerData(34.168598,-118.4487, "Keyes European, LLC");
-    MarkerData location10 = new MarkerData(37.696499,-120.993736, "Grant Bishop Motors, Inc.");
+            new MarkerData(44.115604, -70.616428, "ARCTIC CAT dealer");
+    MarkerData location5 =
+            new MarkerData(44.440062, -73.210947, "AUDI dealer");
+    MarkerData location6 =
+            new MarkerData(42.492769,-71.347019, "BENTLEY dealer");
+    MarkerData location7 =
+            new MarkerData(42.678813,-70.880100, "BIMOTS dealer");
+    MarkerData location8 =
+            new MarkerData(42.213068,-71.186591, "FERRARI cars dealer");
+    MarkerData location9 =
+            new MarkerData(42.316730,-71.225043, "Ford dealer");
+    MarkerData location10 =
+            new MarkerData(42.363931,-71.131659, "BMW dealer");
     MarkerData location11 = new MarkerData(38.40691,-122.716454, "Smothers and White, Inc.");
     MarkerData location12 = new MarkerData(34.435009,-119.746902, "SB Automotive, LP");
     MarkerData location13 = new MarkerData(33.811184,-118.163918, "Long Beach Eurocars, LLC");
@@ -122,9 +128,8 @@ public class MapsActivity extends AppCompatActivity implements
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MapsActivity.this, EditProfileActivity.class));
-            }
-        });
+                startActivity(new Intent(MapsActivity.this,
+                        EditProfileActivity.class));}});
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
@@ -156,9 +161,7 @@ public class MapsActivity extends AppCompatActivity implements
                                         AccountActivity.class);
                                 startActivity(intent3);
                         }
-                        return false;
-                    }
-                });}
+                        return false;}});}
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -171,32 +174,8 @@ public class MapsActivity extends AppCompatActivity implements
                     markersArray.get(i).getLongitude(),
                     markersArray.get(i).getTitle());}
         mMap.setOnMarkerClickListener(this);}
-    /*
-        @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.map_options, menu);
-        return true;}
-    // Allow user to choice different types of Maps
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Change the map type based on the user's selection.
-        switch (item.getItemId()) {
-            case R.id.normal_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);return true;
-            case R.id.hybrid_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);return true;
-            case R.id.satellite_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);return true;
-            case R.id.terrain_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);return true;
-            case R.id.home:
-                onBackPressed();return true;
-            default:
-                return super.onOptionsItemSelected(item);}}
-                */
    @Override
     public boolean onMarkerClick(Marker marker) {
-        //Integer clickCount = (Integer) marker.getTag();
         Toast.makeText(this, marker.getTitle() +
         ": click on the icon in the " +
                 "down-right below to get the direction",

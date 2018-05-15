@@ -83,44 +83,46 @@ public class AccountActivity extends AppCompatActivity {
         // allow Up navigation with the app icon in the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        name = (TextView) findViewById(R.id.displayed_name);
-        age = (TextView) findViewById(R.id.displayed_age);
-        img = (ImageView) findViewById(R.id.displayed_img);
-        email = (TextView) findViewById(R.id.displayed_email);
-        //imageView = (ImageView) findViewById(R.id.user_photo);
-        mSignOut = (Button) findViewById(R.id.sign_out);
-        info = (Button) findViewById(R.id.introslides);
+        name = findViewById(R.id.displayed_name);
+        age = findViewById(R.id.displayed_age);
+        img = findViewById(R.id.displayed_img);
+        email = findViewById(R.id.displayed_email);
+        mSignOut = findViewById(R.id.sign_out);
+        info = findViewById(R.id.introslides);
         userID = user.getUid();
-        demoRef = FirebaseDatabase.getInstance().getReference("users").child(userID);
-        chat = (ImageButton) findViewById(R.id.group_chat);
+        demoRef = FirebaseDatabase.getInstance().
+                getReference("users").child(userID);
+        chat = findViewById(R.id.group_chat);
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AccountActivity.this, ChatActivity.class));
+                startActivity(new Intent(AccountActivity.this,
+                        ChatActivity.class));
             }
         });
-        settings = (ImageButton) findViewById(R.id.ed_profile);
+        settings = findViewById(R.id.ed_profile);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AccountActivity.this, EditProfileActivity.class));
-            }
-        });
+                startActivity(new Intent(AccountActivity.this,
+                        EditProfileActivity.class));}});
         setupFirebaseListener();
         mSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-            }
-        });
+                LoginManager.getInstance().logOut();}});
         //get firebase auth instance
         mAuth = FirebaseAuth.getInstance();
         //get current user
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.
+                getInstance().getCurrentUser();
+        assert user != null;
         setDataToView(user);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        BottomNavigationView bottomNavigationView =
+                findViewById(R.id.navigation);
+        BottomNavigationViewHelper.
+                disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(3);
         menuItem.setChecked(true);

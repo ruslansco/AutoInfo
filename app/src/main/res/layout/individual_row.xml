@@ -9,7 +9,7 @@
     android:padding="5dp"
     android:orientation="vertical">
     <TextView
-        android:text="TextView"
+        android:text="@string/textview_"
         android:layout_width="match_parent"
         android:layout_marginTop="5dp"
         android:textSize="16sp"
@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:id="@+id/message_text" />
     <TextView
-        android:text="TextView"
+        android:text="@string/textview_0"
         android:layout_width="match_parent"
         android:layout_marginTop="1dp"
         android:textSize="10sp"

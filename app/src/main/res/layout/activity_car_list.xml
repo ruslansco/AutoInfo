@@ -60,7 +60,6 @@ tools:context="com.example.cars.CarListActivity">
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:id="@+id/relLayoutBottom"
-        android:layout_alignParentBottom="true"
         android:background="@drawable/gradientbackground">
         <android.support.design.widget.BottomNavigationView
             xmlns:android="http://schemas.android.com/apk/res/android"

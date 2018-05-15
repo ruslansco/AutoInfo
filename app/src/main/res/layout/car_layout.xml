@@ -19,7 +19,7 @@
         android:layout_toRightOf="@+id/carMakeImg">
     <TextView
         android:id="@+id/carYear"
-        android:text="TestText"
+        android:text="@string/testtext"
         android:textColor="@color/Black"
         android:textStyle="bold"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/carName"
-        android:text="TestText"
+        android:text="@string/testtext0"
         android:textColor="@color/Black"
         android:textStyle="bold"
         android:layout_width="match_parent"

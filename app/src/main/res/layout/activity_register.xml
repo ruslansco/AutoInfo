@@ -60,7 +60,7 @@
             android:id="@+id/input_age"
             android:layout_width="331dp"
             android:layout_height="50dp"
-            android:hint="Age"
+            android:hint="@string/age"
             android:singleLine="true"
             android:ems="10"
             android:inputType="date"

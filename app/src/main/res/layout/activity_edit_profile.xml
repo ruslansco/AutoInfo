@@ -92,26 +92,6 @@ tools:context="com.example.cars.EditProfileActivity">
             android:textSize="15sp"
             android:textColor="@color/colorBlack"
             android:singleLine="true" />
-    <!-->
-<RelativeLayout
- android:layout_width="wrap_content"
- android:layout_height="wrap_content"
- android:onClick="selectDate"
- android:layout_gravity="center">
-<EditText
- android:id="@+id/edit_age"
- android:layout_width="300dp"
- android:layout_gravity="center"
- android:layout_height="wrap_content"
- android:hint="@string/new_age"
- android:padding="12dp"
- android:textSize="15sp"
- android:textColor="@color/colorBlack"
- android:singleLine="true"
- android:ems="10"
- android:inputType="date"/>
-        </RelativeLayout>
-         <-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,14 +103,15 @@ tools:context="com.example.cars.EditProfileActivity">
                 android:layout_height="30dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/white_onclick_grey"
-                android:text="Save Picture"/>
+                android:text="@string/save_picture"
+                android:layout_marginEnd="10dp" />
         <Button
             android:id="@+id/save_edit_button"
             android:layout_width="130dp"
             android:layout_marginTop="10dp"
             android:layout_height="30dp"
             android:background="@drawable/white_onclick_grey"
-            android:text="Save Name" />
+            android:text="@string/save_name" />
         </LinearLayout>
     </LinearLayout>
     </RelativeLayout>

@@ -105,4 +105,14 @@
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="name">Name</string>
     <string name="monthdayyear">%d/%d/%d</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="save_picture">Save Picture</string>
+    <string name="save_name">Save Name</string>
+    <string name="testtext">TestText</string>
+    <string name="testtext0">TestText</string>
+    <string name="testtext11">TestText</string>
+    <string name="textview_">TextView</string>
+    <string name="textview_0">TextView</string>
+    <string name="test1">TEST</string>
+    <string name="test10">TEST</string>
 </resources>
